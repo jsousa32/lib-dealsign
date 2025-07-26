@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.github.jsousa32</groupId>
     <artifactId>lib-dealsign</artifactId>
-    <version>1.0.12</version>
+    <version>1.0.0</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Biblioteca Dealsign</description>
     <url>https://github.com/jsousa32/lib-dealsign</url>
@@ -42,7 +42,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.4.0</version>
+            <version>2.4.11</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
