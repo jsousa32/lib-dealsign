@@ -3,7 +3,7 @@ package io.github.jsousa32.libdealsign;
 import io.github.jsousa32.libdealsign.core.DealsignService;
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
-import org.springframework.web.client.RestTemplate;
+import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -80,7 +80,7 @@ public final class DealsignBuilder {
     }
 
     private String getBearerTokenFromDealsign() {
-        final var rest = new RestTemplate();
+        final var rest = RestTemplateUtils.getInstance();
 
         final var dealsignBody = DealsignAuthRequest.generate(this.email, this.uuid);
         final var finalUrl = this.url.concat("/tokens");
