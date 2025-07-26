@@ -28,7 +28,7 @@ public final class DealsignBuilder {
             final String anEmail,
             final String anUuid
     ) {
-        this.url = anUrl;
+        this.url = anUrl.endsWith("/") ? anUrl.substring(0, anUrl.length() - 1) : anUrl;
         this.email = anEmail;
         this.uuid = anUuid;
         this.validate();
@@ -85,11 +85,11 @@ public final class DealsignBuilder {
         final var rest = new RestTemplate();
 
         final var dealsignBody = DealsignAuthRequest.generate(this.email, this.uuid);
-        final var finalUrl = this.url.endsWith("/") ? this.url.concat("tokens") : this.url.concat("/tokens");
+        final var finalUrl = this.url.concat("/tokens");
 
         return Optional.ofNullable(rest.postForEntity(finalUrl, dealsignBody, DealsignAuthResponse.class).getBody())
                 .map(DealsignAuthResponse::getBearer)
-                .orElseThrow(() -> new RuntimeException("Cannot request to Dealsign"));
+                .orElseThrow(() -> DealsignException.generate("Não foi possível se autenticar ao Dealsign."));
     }
 
 
