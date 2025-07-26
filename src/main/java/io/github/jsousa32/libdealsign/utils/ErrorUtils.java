@@ -14,7 +14,7 @@ public final class ErrorUtils {
 
         final var initialPhrase = errors.size() == 1 ? "O atributo " : "Os atributos ";
 
-        final var finalPhrase = errors.size() == 1 ? " é obrigatório." : " são obrigatórios.";
+        final var finalPhrase = errors.size() == 1 ? " é obrigatório e/ou está inválido." : " são obrigatórios e/ou estão inválidos.";
 
         throw new RuntimeException(initialPhrase.concat(errorsInString).concat(finalPhrase));
     }
