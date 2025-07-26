@@ -4,6 +4,7 @@ import io.github.jsousa32.libdealsign.core.DealsignService;
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.ValidatorUtils;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -64,11 +65,11 @@ public final class DealsignBuilder {
     private void validate() {
         final Set<String> errors = new HashSet<>();
 
-        if (this.url == null || this.url.isEmpty()) {
+        if (!ValidatorUtils.isValidUrl(this.url)) {
             errors.add("url");
         }
 
-        if (this.email == null || this.email.isEmpty()) {
+        if (!ValidatorUtils.isValidEmail(this.email)) {
             errors.add("email");
         }
 

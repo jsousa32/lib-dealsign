@@ -2,6 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.webhooks.models.update;
 
 import io.github.jsousa32.libdealsign.usecases.webhooks.common.Events;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
+import io.github.jsousa32.libdealsign.utils.ValidatorUtils;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -41,7 +42,7 @@ public final class WebhookUpdateRequest {
             errors.add("uuid");
         }
 
-        if (getUrl() == null || getUrl().isEmpty()) {
+        if (!ValidatorUtils.isValidUrl(getUrl())) {
             errors.add("url");
         }
 
