@@ -1,5 +1,7 @@
 package io.github.jsousa32.libdealsign.core;
 
+import io.github.jsousa32.libdealsign.usecases.webhooks.WebhookService;
+
 final class DefaultDealsignService implements DealsignService {
 
     private final String bearer;
@@ -19,5 +21,10 @@ final class DefaultDealsignService implements DealsignService {
             final String anUrl
     ) {
         return new DefaultDealsignService(aBearer, anUrl);
+    }
+
+    @Override
+    public WebhookService webhooks() {
+        return WebhookService.builder(this.bearer, this.url);
     }
 }

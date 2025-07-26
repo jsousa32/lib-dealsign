@@ -1,5 +1,7 @@
 package io.github.jsousa32.libdealsign.core;
 
+import io.github.jsousa32.libdealsign.usecases.webhooks.WebhookService;
+
 public interface DealsignService {
 
     static DealsignService builder(
@@ -9,5 +11,5 @@ public interface DealsignService {
         return DefaultDealsignService.generate(aBearer, anUrl);
     }
 
-
+    WebhookService webhooks();
 }
