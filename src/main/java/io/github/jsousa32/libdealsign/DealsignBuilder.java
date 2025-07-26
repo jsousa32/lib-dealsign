@@ -1,9 +1,13 @@
 package io.github.jsousa32.libdealsign;
 
+import io.github.jsousa32.libdealsign.core.DealsignService;
+import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public final class DealsignBuilder {
 
@@ -27,6 +31,7 @@ public final class DealsignBuilder {
         this.url = anUrl;
         this.email = anEmail;
         this.uuid = anUuid;
+        this.validate();
         this.expriesAt = LocalDateTime.now().plusMinutes(55);
         this.bearer = getBearerTokenFromDealsign();
     }
@@ -49,6 +54,31 @@ public final class DealsignBuilder {
         }
 
         return instance;
+    }
+
+    public DealsignService build() {
+        return DealsignService.builder(this.bearer, this.url);
+    }
+
+    private void validate() {
+        final Set<String> errors = new HashSet<>();
+
+        if (this.url == null || this.url.isEmpty()) {
+            errors.add("url");
+        }
+
+        if (this.email == null || this.email.isEmpty()) {
+            errors.add("email");
+        }
+
+        if (this.uuid == null || this.uuid.isEmpty()) {
+            errors.add("uuid");
+        }
+
+        if (!errors.isEmpty()) {
+            final var errorsInString = String.join(", ", errors);
+            throw DealsignException.generate("Os atributos ".concat(errorsInString).concat(" são obrigatórios."));
+        }
     }
 
     private String getBearerTokenFromDealsign() {
