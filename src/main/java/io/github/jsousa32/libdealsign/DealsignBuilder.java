@@ -2,6 +2,7 @@ package io.github.jsousa32.libdealsign;
 
 import io.github.jsousa32.libdealsign.core.DealsignService;
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
+import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
@@ -75,10 +76,7 @@ public final class DealsignBuilder {
             errors.add("uuid");
         }
 
-        if (!errors.isEmpty()) {
-            final var errorsInString = String.join(", ", errors);
-            throw DealsignException.generate("Os atributos ".concat(errorsInString).concat(" são obrigatórios."));
-        }
+        ErrorUtils.checkIfHasAnyError(errors);
     }
 
     private String getBearerTokenFromDealsign() {
