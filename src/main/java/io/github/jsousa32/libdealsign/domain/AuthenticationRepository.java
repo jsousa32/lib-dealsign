@@ -43,7 +43,7 @@ public final class AuthenticationRepository {
         }
     }
 
-    public static void save(final Authentication anAuthentication) {
+    public static Authentication save(final Authentication anAuthentication) {
         AuthenticationRepository.findById(anAuthentication.getId()).ifPresentOrElse((auth) -> {
             final var sql = "UPDATE tb_authentication SET bearer=?, expiresAt=? WHERE id = ?;";
 
@@ -69,5 +69,7 @@ public final class AuthenticationRepository {
                 log.error("Não foi possível salvar o token de authentication do Dealsign {}", ex.getMessage());
             }
         });
+
+        return anAuthentication;
     }
 }
