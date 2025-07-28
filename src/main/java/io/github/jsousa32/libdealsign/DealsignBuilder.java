@@ -4,20 +4,16 @@ import io.github.jsousa32.libdealsign.core.DealsignService;
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
-import io.github.jsousa32.libdealsign.utils.ValidatorUtils;
+import io.github.jsousa32.libdealsign.utils.validators.EmailValidator;
+import io.github.jsousa32.libdealsign.utils.validators.UrlValidator;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 public final class DealsignBuilder {
 
-    private static DealsignBuilder instance;
-
     private final String bearer;
-
-    private final LocalDateTime expriesAt;
 
     private final String url;
 
@@ -34,7 +30,6 @@ public final class DealsignBuilder {
         this.email = anEmail;
         this.uuid = anUuid;
         this.validate();
-        this.expriesAt = LocalDateTime.now().plusMinutes(55);
         this.bearer = getBearerTokenFromDealsign();
     }
 
@@ -43,19 +38,7 @@ public final class DealsignBuilder {
             final String anEmail,
             final String anUuid
     ) {
-        if (instance == null) {
-            return instance = new DealsignBuilder(anUrl, anEmail, anUuid);
-        }
-
-        if (LocalDateTime.now().isAfter(instance.expriesAt) && instance.uuid.equals(anUuid)) {
-            return instance = new DealsignBuilder(anUrl, anEmail, anUuid);
-        }
-
-        if (LocalDateTime.now().isAfter(instance.expriesAt)) {
-            return instance = new DealsignBuilder(anUrl, anEmail, anUuid);
-        }
-
-        return instance;
+        return new DealsignBuilder(anUrl, anEmail, anUuid);
     }
 
     public DealsignService build() {
@@ -65,11 +48,11 @@ public final class DealsignBuilder {
     private void validate() {
         final Set<String> errors = new HashSet<>();
 
-        if (!ValidatorUtils.isValidUrl(this.url)) {
+        if (!UrlValidator.isValid(this.url)) {
             errors.add("url");
         }
 
-        if (!ValidatorUtils.isValidEmail(this.email)) {
+        if (!EmailValidator.isValid(this.email)) {
             errors.add("email");
         }
 
@@ -93,12 +76,9 @@ public final class DealsignBuilder {
 
 
     private static class DealsignAuthRequest {
-        private String email;
+        private final String email;
 
-        private String uuid;
-
-        public DealsignAuthRequest() {
-        }
+        private final String uuid;
 
         private DealsignAuthRequest(
                 final String anEmail,
@@ -113,14 +93,6 @@ public final class DealsignBuilder {
                 final String anUuid
         ) {
             return new DealsignAuthRequest(anEmail, anUuid);
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public String getUuid() {
-            return uuid;
         }
     }
 

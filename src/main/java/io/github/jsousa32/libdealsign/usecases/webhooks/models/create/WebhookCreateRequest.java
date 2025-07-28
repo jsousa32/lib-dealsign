@@ -2,7 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.webhooks.models.create;
 
 import io.github.jsousa32.libdealsign.usecases.webhooks.common.Events;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
-import io.github.jsousa32.libdealsign.utils.ValidatorUtils;
+import io.github.jsousa32.libdealsign.utils.validators.UrlValidator;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -33,7 +33,7 @@ public final class WebhookCreateRequest {
     private void validate() {
         final Set<String> errors = new HashSet<>();
 
-        if (!ValidatorUtils.isValidUrl(getUrl())) {
+        if (!UrlValidator.isValid(getUrl())) {
             errors.add("url");
         }
 
