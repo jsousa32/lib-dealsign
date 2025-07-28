@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.github.jsousa32</groupId>
     <artifactId>lib-dealsign</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Biblioteca Dealsign</description>
     <url>https://github.com/jsousa32/lib-dealsign</url>
@@ -50,9 +50,8 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.13</version>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
         </dependency>
 
         <dependency>
