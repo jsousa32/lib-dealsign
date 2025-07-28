@@ -89,9 +89,11 @@ public final class DealsignBuilder {
 
         final var authentication = Authentication.generate(this.uuid, response.getBearer());
 
-        AuthenticationRepository.save(authentication);
-
-        return response.getBearer();
+        try {
+            return AuthenticationRepository.save(authentication).getBearer();
+        } catch (Exception ex) {
+            return response.getBearer();
+        }
     }
 
 
