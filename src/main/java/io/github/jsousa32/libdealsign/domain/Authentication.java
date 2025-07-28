@@ -1,7 +1,6 @@
 package io.github.jsousa32.libdealsign.domain;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class Authentication {
 
