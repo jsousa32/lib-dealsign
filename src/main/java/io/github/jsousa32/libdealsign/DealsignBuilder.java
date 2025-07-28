@@ -33,16 +33,13 @@ public final class DealsignBuilder {
         this.bearer = getBearerTokenFromDealsign();
     }
 
-    public static synchronized DealsignBuilder getInstance(
+    public static synchronized DealsignService getInstance(
             final String anUrl,
             final String anEmail,
             final String anUuid
     ) {
-        return new DealsignBuilder(anUrl, anEmail, anUuid);
-    }
-
-    public DealsignService build() {
-        return DealsignService.builder(this.bearer, this.url);
+        final var builder = new DealsignBuilder(anUrl, anEmail, anUuid);
+        return DealsignService.builder(builder.bearer, builder.url);
     }
 
     private void validate() {
