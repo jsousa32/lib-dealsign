@@ -1,12 +1,15 @@
 package io.github.jsousa32.libdealsign;
 
 import io.github.jsousa32.libdealsign.core.DealsignService;
+import io.github.jsousa32.libdealsign.domain.Authentication;
+import io.github.jsousa32.libdealsign.domain.AuthenticationRepository;
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
 import io.github.jsousa32.libdealsign.utils.validators.EmailValidator;
 import io.github.jsousa32.libdealsign.utils.validators.UrlValidator;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -30,7 +33,7 @@ public final class DealsignBuilder {
         this.email = anEmail;
         this.uuid = anUuid;
         this.validate();
-        this.bearer = getBearerTokenFromDealsign();
+        this.bearer = getBearerToken();
     }
 
     public static synchronized DealsignService getInstance(
@@ -60,15 +63,35 @@ public final class DealsignBuilder {
         ErrorUtils.checkIfHasAnyError(errors);
     }
 
-    private String getBearerTokenFromDealsign() {
+    private String getBearerToken() {
+        final var registerIntoDB = AuthenticationRepository.findById(this.uuid);
+
+        if (registerIntoDB.isPresent()) {
+
+            final var expiresAt = registerIntoDB.get().getExpiresAt();
+
+            if (expiresAt.isAfter(LocalDateTime.now())) {
+                return registerIntoDB.get().getBearer();
+            }
+        }
+
+        return generateBearerTokenFromDealsign();
+    }
+
+    private String generateBearerTokenFromDealsign() {
         final var rest = RestTemplateUtils.getInstance();
 
         final var dealsignBody = DealsignAuthRequest.generate(this.email, this.uuid);
         final var finalUrl = this.url.concat("/tokens");
 
-        return Optional.ofNullable(rest.postForEntity(finalUrl, dealsignBody, DealsignAuthResponse.class).getBody())
-                .map(DealsignAuthResponse::getBearer)
+        final var response = Optional.ofNullable(rest.postForEntity(finalUrl, dealsignBody, DealsignAuthResponse.class).getBody())
                 .orElseThrow(() -> DealsignException.generate("Não foi possível se autenticar ao Dealsign."));
+
+        final var authentication = Authentication.generate(this.uuid, response.getBearer());
+
+        AuthenticationRepository.save(authentication);
+
+        return response.getBearer();
     }
 
 
@@ -90,6 +113,14 @@ public final class DealsignBuilder {
                 final String anUuid
         ) {
             return new DealsignAuthRequest(anEmail, anUuid);
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getUuid() {
+            return uuid;
         }
     }
 
