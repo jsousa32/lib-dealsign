@@ -1,14 +1,10 @@
 package io.github.jsousa32.libdealsign.usecases.subgroups;
 
-import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.subgroups.models.unlink_profiles.SubgroupUnlinkProfilesRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
 
 final class DefaultSubgroupUnlinkProfilesUseCase extends UnitUseCase<SubgroupUnlinkProfilesRequest> {
 

@@ -1,7 +1,6 @@
 package io.github.jsousa32.libdealsign.usecases.groups;
 
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
-import io.github.jsousa32.libdealsign.usecases.groups.models.link_subgroups.GroupLinkSubgroupsRequest;
 import io.github.jsousa32.libdealsign.usecases.groups.models.unlink_subgroups.link_subgroups.GroupUnlinkSubgroupsRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
