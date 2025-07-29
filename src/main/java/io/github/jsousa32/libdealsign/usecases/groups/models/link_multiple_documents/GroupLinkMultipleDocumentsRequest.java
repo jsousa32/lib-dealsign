@@ -1,5 +1,8 @@
 package io.github.jsousa32.libdealsign.usecases.groups.models.link_multiple_documents;
 
+import io.github.jsousa32.libdealsign.utils.ErrorUtils;
+
+import java.util.HashSet;
 import java.util.Set;
 
 public class GroupLinkMultipleDocumentsRequest {
@@ -14,6 +17,21 @@ public class GroupLinkMultipleDocumentsRequest {
     ) {
         this.envelopeUuid = anEnvelopeUuid;
         this.linkGroupAndDocuments = aLinkGroupAndDocuments;
+        this.validate();
+    }
+
+    private void validate() {
+        final Set<String> errors = new HashSet<>();
+
+        if (getEnvelopeUuid() == null || getEnvelopeUuid().isEmpty()) {
+            errors.add("envelopeUuid");
+        }
+
+        if (getLinkGroupAndDocuments() == null || getLinkGroupAndDocuments().isEmpty()) {
+            errors.add("linkGroupAndDocuments");
+        }
+
+        ErrorUtils.checkIfHasAnyError(errors);
     }
 
     public static GroupLinkMultipleDocumentsRequest generate(
