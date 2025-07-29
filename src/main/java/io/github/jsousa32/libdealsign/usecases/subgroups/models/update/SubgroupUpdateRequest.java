@@ -33,16 +33,32 @@ public class SubgroupUpdateRequest {
     }
 
     public SubgroupUpdateRequest addProfileUuid(final String aProfileUuid) {
-        if (aProfileUuid == null || !aProfileUuid.isEmpty()) {
+        if (aProfileUuid != null && !aProfileUuid.isEmpty()) {
             getProfilesUuid().add(aProfileUuid);
         }
 
         return this;
     }
 
+    public SubgroupUpdateRequest addProfileUuid(final Set<String> aProfileUuid) {
+        if (aProfileUuid.isEmpty()) {
+            getProfilesUuid().addAll(aProfileUuid);
+        }
+
+        return this;
+    }
+
     public SubgroupUpdateRequest removeProfileUuid(final String aProfileUuid) {
-        if (aProfileUuid == null || !aProfileUuid.isEmpty()) {
-            getProfilesUuid().removeIf(p -> p.equals(aProfileUuid));
+        if (aProfileUuid != null && !aProfileUuid.isEmpty()) {
+            getProfilesUuid().remove(aProfileUuid);
+        }
+
+        return this;
+    }
+
+    public SubgroupUpdateRequest removeProfileUuid(final Set<String> aProfileUuid) {
+        if (!aProfileUuid.isEmpty()) {
+            getProfilesUuid().removeAll(aProfileUuid);
         }
 
         return this;
