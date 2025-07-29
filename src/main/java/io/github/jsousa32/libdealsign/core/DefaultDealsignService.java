@@ -1,5 +1,6 @@
 package io.github.jsousa32.libdealsign.core;
 
+import io.github.jsousa32.libdealsign.usecases.subgroups.SubgroupService;
 import io.github.jsousa32.libdealsign.usecases.webhooks.WebhookService;
 
 final class DefaultDealsignService implements DealsignService {
@@ -26,5 +27,10 @@ final class DefaultDealsignService implements DealsignService {
     @Override
     public WebhookService webhooks() {
         return WebhookService.builder(this.bearer, this.url);
+    }
+
+    @Override
+    public SubgroupService subgroups() {
+        return SubgroupService.builder(this.bearer, this.url);
     }
 }

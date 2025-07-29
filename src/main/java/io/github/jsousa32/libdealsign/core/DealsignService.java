@@ -1,5 +1,6 @@
 package io.github.jsousa32.libdealsign.core;
 
+import io.github.jsousa32.libdealsign.usecases.subgroups.SubgroupService;
 import io.github.jsousa32.libdealsign.usecases.webhooks.WebhookService;
 
 public interface DealsignService {
@@ -12,4 +13,6 @@ public interface DealsignService {
     }
 
     WebhookService webhooks();
+
+    SubgroupService subgroups();
 }
