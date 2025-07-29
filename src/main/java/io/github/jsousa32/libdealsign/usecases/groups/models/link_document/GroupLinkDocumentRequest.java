@@ -1,5 +1,6 @@
 package io.github.jsousa32.libdealsign.usecases.groups.models.link_document;
 
+import io.github.jsousa32.libdealsign.usecases.groups.models.common.Authentication;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
 import java.util.HashSet;
