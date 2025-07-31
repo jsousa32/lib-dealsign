@@ -1,5 +1,8 @@
 package io.github.jsousa32.libdealsign.usecases.signatures;
 
+import io.github.jsousa32.libdealsign.usecases.signatures.models.create.SignatureCreateRequest;
+import io.github.jsousa32.libdealsign.usecases.signatures.models.create.SignatureCreateResponse;
+
 import java.util.Objects;
 
 final class DefaultSignatureService implements SignatureService {
@@ -21,5 +24,10 @@ final class DefaultSignatureService implements SignatureService {
             final String anUrl
     ) {
         return new DefaultSignatureService(aBearer, anUrl);
+    }
+
+    @Override
+    public SignatureCreateResponse create(final SignatureCreateRequest anInput) {
+        return DefaultSignatureCreateUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
