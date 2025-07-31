@@ -1,5 +1,6 @@
 package io.github.jsousa32.libdealsign.usecases.signatures.models.create;
 
+import io.github.jsousa32.libdealsign.usecases.signatures.models.common.Status;
 import io.github.jsousa32.libdealsign.usecases.subgroups.models.link_profiles.Type;
 
 import java.time.LocalDateTime;
