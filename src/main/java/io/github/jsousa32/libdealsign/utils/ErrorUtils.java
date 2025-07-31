@@ -1,5 +1,7 @@
 package io.github.jsousa32.libdealsign.utils;
 
+import io.github.jsousa32.libdealsign.exceptions.DealsignException;
+
 import java.util.Set;
 
 public final class ErrorUtils {
@@ -16,6 +18,6 @@ public final class ErrorUtils {
 
         final var finalPhrase = errors.size() == 1 ? " é obrigatório e/ou está inválido." : " são obrigatórios e/ou estão inválidos.";
 
-        throw new RuntimeException(initialPhrase.concat(errorsInString).concat(finalPhrase));
+        throw DealsignException.generate(initialPhrase.concat(errorsInString).concat(finalPhrase));
     }
 }
