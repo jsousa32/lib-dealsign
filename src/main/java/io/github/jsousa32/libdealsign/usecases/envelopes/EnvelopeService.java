@@ -2,6 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.envelopes;
 
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.EnvelopeMountRequest;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.EnvelopeMountResponse;
+import io.github.jsousa32.libdealsign.usecases.envelopes.models.retrive.EnvelopeRetriveResponse;
 
 public interface EnvelopeService {
 
@@ -13,4 +14,6 @@ public interface EnvelopeService {
     }
 
     EnvelopeMountResponse create(final EnvelopeMountRequest anInput);
+
+    EnvelopeRetriveResponse retrive(final String anId);
 }
