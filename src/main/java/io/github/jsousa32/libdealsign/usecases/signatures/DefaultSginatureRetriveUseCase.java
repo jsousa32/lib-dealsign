@@ -2,7 +2,6 @@ package io.github.jsousa32.libdealsign.usecases.signatures;
 
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UseCase;
-import io.github.jsousa32.libdealsign.usecases.signatures.models.create.SignatureCreateResponse;
 import io.github.jsousa32.libdealsign.usecases.signatures.models.retrive.SignatureRetriveResponse;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;

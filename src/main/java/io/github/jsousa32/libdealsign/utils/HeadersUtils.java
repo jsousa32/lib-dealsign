@@ -3,9 +3,6 @@ package io.github.jsousa32.libdealsign.utils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.MultipartBodyBuilder;
-
-import java.util.List;
 
 public final class HeadersUtils {
 
