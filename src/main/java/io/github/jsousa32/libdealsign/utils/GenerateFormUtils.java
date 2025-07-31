@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 public final class GenerateFormUtils {
 
@@ -24,7 +25,9 @@ public final class GenerateFormUtils {
 
         final var builder = new MultipartBodyBuilder();
 
-        builder.part("name", Optional.ofNullable(aFile.getOriginalFilename()).orElse("Arquivo_".concat(String.valueOf(i))));
+        builder.part("name", Optional
+                .ofNullable(aFile.getOriginalFilename())
+                .orElse("Arquivo_".concat(UUID.randomUUID().toString())));
         builder.part("file", resource);
 
         return builder;
