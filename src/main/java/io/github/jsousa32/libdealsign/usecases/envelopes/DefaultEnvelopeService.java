@@ -1,5 +1,6 @@
 package io.github.jsousa32.libdealsign.usecases.envelopes;
 
+import io.github.jsousa32.libdealsign.usecases.envelopes.models.bind_envelope.EnvelopeBindRequest;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.EnvelopeMountRequest;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.EnvelopeMountResponse;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.retrive.EnvelopeRetriveResponse;
@@ -52,5 +53,10 @@ final class DefaultEnvelopeService implements EnvelopeService {
     @Override
     public EnvelopeZipUrlResponse url(final String anId) {
         return DefaultEnvelopeZipUrlUseCase.generate(this.bearer, this.url).execute(anId);
+    }
+
+    @Override
+    public void bindEnvelope(final EnvelopeBindRequest anInput) {
+        DefaultEnvelopeBindUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
