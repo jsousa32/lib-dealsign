@@ -1,16 +1,10 @@
 package io.github.jsousa32.libdealsign.usecases.envelopes;
 
-import io.github.jsousa32.libdealsign.exceptions.DealsignException;
-import io.github.jsousa32.libdealsign.usecases.NullaryUseCase;
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
-import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.EnvelopeMountResponse;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.send_envelope.EnvelopeSendRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
 
 final class DefaultEnvelopeSendUseCase extends UnitUseCase<EnvelopeSendRequest> {
 

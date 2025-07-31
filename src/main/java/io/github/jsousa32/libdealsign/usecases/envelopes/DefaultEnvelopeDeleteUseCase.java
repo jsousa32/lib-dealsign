@@ -1,15 +1,9 @@
 package io.github.jsousa32.libdealsign.usecases.envelopes;
 
-import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
-import io.github.jsousa32.libdealsign.usecases.UseCase;
-import io.github.jsousa32.libdealsign.usecases.envelopes.models.retrive.EnvelopeRetriveResponse;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
 
 final class DefaultEnvelopeDeleteUseCase extends UnitUseCase<String> {
 
