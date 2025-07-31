@@ -7,6 +7,8 @@ import io.github.jsousa32.libdealsign.usecases.subgroups.models.unlink_profiles.
 import io.github.jsousa32.libdealsign.usecases.subgroups.models.unlink_profiles_n_subgroups.SubgroupUnlinkProfilesNSubgroupsRequest;
 import io.github.jsousa32.libdealsign.usecases.subgroups.models.update.SubgroupUpdateRequest;
 
+import java.util.Objects;
+
 final class DefaultSubgroupService implements SubgroupService {
 
     private final String bearer;
@@ -17,8 +19,8 @@ final class DefaultSubgroupService implements SubgroupService {
             final String aBearer,
             final String anUrl
     ) {
-        this.bearer = aBearer;
-        this.url = anUrl;
+        this.bearer = Objects.requireNonNull(aBearer, "O Bearer não pode ser nulo.");
+        this.url = Objects.requireNonNull(anUrl, "A URL não pode ser nula.");
     }
 
     public static SubgroupService generate(

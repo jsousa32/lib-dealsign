@@ -22,5 +22,5 @@ public interface WebhookService {
 
     void update(final WebhookUpdateRequest anInput);
 
-    void delete(String anId);
+    void delete(final String anId);
 }
