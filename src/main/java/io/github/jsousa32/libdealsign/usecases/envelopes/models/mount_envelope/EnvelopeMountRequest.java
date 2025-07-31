@@ -2,9 +2,9 @@ package io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope;
 
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
+import io.github.jsousa32.libdealsign.utils.GenerateFormUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -66,24 +66,12 @@ public class EnvelopeMountRequest {
     private List<MultipartBodyBuilder> generateForm(final List<MultipartFile> aFiles) {
         final var files = new ArrayList<MultipartBodyBuilder>();
 
-        for (int i = 0; i < aFiles.size(); i++) {
-
-            var filename = "";
+        for (MultipartFile aFile : aFiles) {
 
             try {
-                final var resource = new ByteArrayResource(aFiles.get(i).getBytes()) {
-                    @Override
-                    public String getFilename() {
-                        return filename;
-                    }
-                };
 
-                final var builder = new MultipartBodyBuilder();
+                files.add(GenerateFormUtils.generate(aFile));
 
-                builder.part("name", Optional.ofNullable(aFiles.get(i).getOriginalFilename()).orElse("Arquivo_".concat(String.valueOf(i))));
-                builder.part("file", resource);
-
-                files.add(builder);
             } catch (final IOException ex) {
                 log.error("Não foi possível fazer a leitura do arquivo {}", ex.getMessage());
                 throw DealsignException.generate("Não foi possível fazer a leitura do arquivo.");
