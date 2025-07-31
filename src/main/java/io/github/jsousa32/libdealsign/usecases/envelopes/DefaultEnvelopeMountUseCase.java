@@ -36,7 +36,7 @@ final class DefaultEnvelopeMountUseCase extends UseCase<EnvelopeMountResponse, E
     public EnvelopeMountResponse execute(final EnvelopeMountRequest anInput) {
         final var rest = RestTemplateUtils.getInstance();
 
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
+        final var httpEntity = HeadersUtils.generateForm(bearer, anInput);
 
         return Optional.of(rest.exchange(this.url, HttpMethod.POST, httpEntity, EnvelopeMountResponse.class))
                 .map(ResponseEntity::getBody)
