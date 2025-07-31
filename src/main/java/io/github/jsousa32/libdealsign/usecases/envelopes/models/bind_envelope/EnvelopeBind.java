@@ -88,6 +88,5 @@ public class EnvelopeBind {
 
     public Set<String> getDocumentsUuid() {
         return Optional.ofNullable(documentsUuid).orElseGet(HashSet::new);
-        ;
     }
 }
