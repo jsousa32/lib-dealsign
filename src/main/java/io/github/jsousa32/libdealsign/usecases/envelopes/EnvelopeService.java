@@ -3,6 +3,7 @@ package io.github.jsousa32.libdealsign.usecases.envelopes;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.EnvelopeMountRequest;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.EnvelopeMountResponse;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.retrive.EnvelopeRetriveResponse;
+import io.github.jsousa32.libdealsign.usecases.envelopes.models.send_envelope.EnvelopeSendRequest;
 
 public interface EnvelopeService {
 
@@ -18,4 +19,6 @@ public interface EnvelopeService {
     EnvelopeRetriveResponse retrive(final String anId);
 
     void delete(final String anId);
+
+    void sendEnvelope(final EnvelopeSendRequest anInput);
 }
