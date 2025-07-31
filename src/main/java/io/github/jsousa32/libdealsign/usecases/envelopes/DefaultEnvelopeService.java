@@ -36,4 +36,9 @@ final class DefaultEnvelopeService implements EnvelopeService {
     public EnvelopeRetriveResponse retrive(String anId) {
         return DefaultEnvelopeRetriveUseCase.generate(this.bearer, this.url).execute(anId);
     }
+
+    @Override
+    public void delete(String anId) {
+        DefaultEnvelopeDeleteUseCase.generate(this.bearer, this.url).execute(anId);
+    }
 }

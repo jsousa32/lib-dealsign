@@ -16,4 +16,6 @@ public interface EnvelopeService {
     EnvelopeMountResponse create(final EnvelopeMountRequest anInput);
 
     EnvelopeRetriveResponse retrive(final String anId);
+
+    void delete(final String anId);
 }
