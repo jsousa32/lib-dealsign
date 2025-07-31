@@ -39,6 +39,6 @@ final class DefaultEnvelopeSendUseCase extends UnitUseCase<EnvelopeSendRequest> 
 
         final var httpEntity = HeadersUtils.generate(bearer, anInput);
 
-        rest.exchange(this.url, HttpMethod.POST, httpEntity, EnvelopeSendRequest.class);
+        rest.exchange(this.url, HttpMethod.POST, httpEntity, Void.class);
     }
 }
