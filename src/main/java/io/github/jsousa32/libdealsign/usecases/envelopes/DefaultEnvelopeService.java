@@ -1,5 +1,8 @@
 package io.github.jsousa32.libdealsign.usecases.envelopes;
 
+import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.EnvelopeMountRequest;
+import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.EnvelopeMountResponse;
+
 import java.util.Objects;
 
 final class DefaultEnvelopeService implements EnvelopeService {
@@ -21,5 +24,10 @@ final class DefaultEnvelopeService implements EnvelopeService {
             final String anUrl
     ) {
         return new DefaultEnvelopeService(aBearer, anUrl);
+    }
+
+    @Override
+    public EnvelopeMountResponse create(final EnvelopeMountRequest anInput) {
+        return DefaultEnvelopeMountUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
