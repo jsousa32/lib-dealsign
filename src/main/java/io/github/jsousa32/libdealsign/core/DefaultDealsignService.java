@@ -1,5 +1,6 @@
 package io.github.jsousa32.libdealsign.core;
 
+import io.github.jsousa32.libdealsign.usecases.envelopes.EnvelopeService;
 import io.github.jsousa32.libdealsign.usecases.groups.GroupService;
 import io.github.jsousa32.libdealsign.usecases.signatures.SignatureService;
 import io.github.jsousa32.libdealsign.usecases.subgroups.SubgroupService;
@@ -44,5 +45,10 @@ final class DefaultDealsignService implements DealsignService {
     @Override
     public SignatureService signatures() {
         return SignatureService.builder(this.bearer, this.url);
+    }
+
+    @Override
+    public EnvelopeService envelopes() {
+        return EnvelopeService.builder(this.bearer, this.url);
     }
 }
