@@ -36,4 +36,9 @@ final class DefaultSignatureService implements SignatureService {
     public SignatureRetriveResponse retrive(String anId) {
         return DefaultSginatureRetriveUseCase.generate(this.bearer, this.url).execute(anId);
     }
+
+    @Override
+    public void delete(final String anId) {
+        DefaultSginatureDeleteUseCase.generate(this.bearer, this.url).execute(anId);
+    }
 }

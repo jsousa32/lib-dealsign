@@ -16,4 +16,6 @@ public interface SignatureService {
     SignatureCreateResponse create(final SignatureCreateRequest anInput);
 
     SignatureRetriveResponse retrive(final String anId);
+
+    void delete(final String anId);
 }
