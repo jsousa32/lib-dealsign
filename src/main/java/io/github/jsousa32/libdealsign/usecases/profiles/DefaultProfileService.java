@@ -1,5 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.profiles;
 
+import io.github.jsousa32.libdealsign.usecases.profiles.models.create.ProfileCreateRequest;
+import io.github.jsousa32.libdealsign.usecases.profiles.models.create.ProfileCreateResponse;
 import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateRequest;
 import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateResponse;
 
@@ -29,5 +31,10 @@ final class DefaultProfileService implements ProfileService {
     @Override
     public ProfileUpdateResponse update(final ProfileUpdateRequest anInput) {
         return DefaultProfileUpdateUseCase.generate(this.bearer, this.url).execute(anInput);
+    }
+
+    @Override
+    public ProfileCreateResponse create(final ProfileCreateRequest anInput) {
+        return DefaultProfileCreateUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
