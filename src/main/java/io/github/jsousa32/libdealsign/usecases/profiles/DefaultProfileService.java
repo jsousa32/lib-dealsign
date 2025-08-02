@@ -1,0 +1,45 @@
+package io.github.jsousa32.libdealsign.usecases.profiles;
+
+import io.github.jsousa32.libdealsign.usecases.profiles.models.create.ProfileCreateRequest;
+import io.github.jsousa32.libdealsign.usecases.profiles.models.create.ProfileCreateResponse;
+import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateRequest;
+import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateResponse;
+
+import java.util.Objects;
+
+final class DefaultProfileService implements ProfileService {
+
+    private final String bearer;
+
+    private final String url;
+
+    private DefaultProfileService(
+            final String aBearer,
+            final String anUrl
+    ) {
+        this.bearer = Objects.requireNonNull(aBearer, "O Bearer não pode ser nulo.");
+        this.url = Objects.requireNonNull(anUrl, "A URL não pode ser nula.");
+    }
+
+    public static DefaultProfileService generate(
+            final String aBearer,
+            final String anUrl
+    ) {
+        return new DefaultProfileService(aBearer, anUrl);
+    }
+
+    @Override
+    public ProfileUpdateResponse update(final ProfileUpdateRequest anInput) {
+        return DefaultProfileUpdateUseCase.generate(this.bearer, this.url).execute(anInput);
+    }
+
+    @Override
+    public ProfileCreateResponse create(final ProfileCreateRequest anInput) {
+        return DefaultProfileCreateUseCase.generate(this.bearer, this.url).execute(anInput);
+    }
+
+    @Override
+    public void delete(final String anId) {
+        DefaultProfileDeleteUseCase.generate(this.bearer, this.url).execute(anId);
+    }
+}
