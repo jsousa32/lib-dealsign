@@ -1,5 +1,6 @@
 package io.github.jsousa32.libdealsign.core;
 
+import io.github.jsousa32.libdealsign.usecases.document.DocumentService;
 import io.github.jsousa32.libdealsign.usecases.envelopes.EnvelopeService;
 import io.github.jsousa32.libdealsign.usecases.groups.GroupService;
 import io.github.jsousa32.libdealsign.usecases.signatures.SignatureService;
@@ -24,4 +25,6 @@ public interface DealsignService {
     SignatureService signatures();
 
     EnvelopeService envelopes();
+
+    DocumentService documents();
 }
