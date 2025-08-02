@@ -39,7 +39,7 @@ final class DefaultDocumentRetriveUrlUseCase extends UseCase<DocumentRetriveUrlR
 
         final var httpEntity = HeadersUtils.generate(bearer);
 
-        return Optional.of(rest.exchange(url, HttpMethod.POST, httpEntity, DocumentRetriveUrlResponse.class))
+        return Optional.of(rest.exchange(url, HttpMethod.GET, httpEntity, DocumentRetriveUrlResponse.class))
                 .map(ResponseEntity::getBody)
                 .orElseThrow(() -> DealsignException.generate("Não foi possível buscar a url do documento."));
     }
