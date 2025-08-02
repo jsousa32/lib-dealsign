@@ -1,5 +1,8 @@
 package io.github.jsousa32.libdealsign.usecases.profiles;
 
+import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateRequest;
+import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateResponse;
+
 public interface ProfileService {
 
     static ProfileService builder(
@@ -8,4 +11,6 @@ public interface ProfileService {
     ) {
         return DefaultProfileService.generate(aBearer, anUrl);
     }
+
+    ProfileUpdateResponse update(final ProfileUpdateRequest anInput);
 }
