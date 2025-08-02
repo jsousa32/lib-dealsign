@@ -17,4 +17,6 @@ public interface ProfileService {
     ProfileUpdateResponse update(final ProfileUpdateRequest anInput);
 
     ProfileCreateResponse create(final ProfileCreateRequest anInput);
+
+    void delete(final String anId);
 }

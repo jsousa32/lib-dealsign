@@ -37,4 +37,9 @@ final class DefaultProfileService implements ProfileService {
     public ProfileCreateResponse create(final ProfileCreateRequest anInput) {
         return DefaultProfileCreateUseCase.generate(this.bearer, this.url).execute(anInput);
     }
+
+    @Override
+    public void delete(final String anId) {
+        DefaultProfileDeleteUseCase.generate(this.bearer, this.url).execute(anId);
+    }
 }
