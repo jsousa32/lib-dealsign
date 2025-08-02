@@ -2,6 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.signers.models.update;
 
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.signers.models.common.ProfileSigner;
+import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -9,6 +10,8 @@ import java.util.Optional;
 import java.util.Set;
 
 public class SignerUpdateRequest {
+
+    private final String uuid;
 
     private String name;
 
@@ -18,13 +21,20 @@ public class SignerUpdateRequest {
 
     private final Set<ProfileSigner> profiles;
 
-    private SignerUpdateRequest(final Set<ProfileSigner> aProfiles) {
+    private SignerUpdateRequest(
+            final String anUuid,
+            final Set<ProfileSigner> aProfiles
+    ) {
+        this.uuid = anUuid;
         this.profiles = aProfiles;
         this.validate();
     }
 
-    public static SignerUpdateRequest generate(final Set<ProfileSigner> aProfiles) {
-        return new SignerUpdateRequest(aProfiles);
+    public static SignerUpdateRequest generate(
+            final String anUuid,
+            final Set<ProfileSigner> aProfiles
+    ) {
+        return new SignerUpdateRequest(anUuid, aProfiles);
     }
 
     public SignerUpdateRequest changeName(final String aName) {
@@ -53,9 +63,21 @@ public class SignerUpdateRequest {
     }
 
     private void validate() {
-        if (getProfiles().isEmpty()) {
-            throw DealsignException.generate("O signatário necessitar ter ao menos um perfil.");
+        final Set<String> errors = new HashSet<>();
+
+        if (getUuid() == null || getUuid().isBlank()) {
+            errors.add("uuid");
         }
+
+        if (getProfiles().isEmpty()) {
+            errors.add("profiles");
+        }
+
+        ErrorUtils.checkIfHasAnyError(errors);
+    }
+
+    public String getUuid() {
+        return uuid;
     }
 
     public String getName() {
