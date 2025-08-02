@@ -1,0 +1,25 @@
+package io.github.jsousa32.libdealsign.usecases.signers;
+
+import java.util.Objects;
+
+final class DefaultSignerService implements SignerService {
+
+    private final String bearer;
+
+    private final String url;
+
+    private DefaultSignerService(
+            final String aBearer,
+            final String anUrl
+    ) {
+        this.bearer = Objects.requireNonNull(aBearer, "O Bearer não pode ser nulo.");
+        this.url = Objects.requireNonNull(anUrl, "A URL não pode ser nula.");
+    }
+
+    public static DefaultSignerService generate(
+            final String aBearer,
+            final String anUrl
+    ) {
+        return new DefaultSignerService(aBearer, anUrl);
+    }
+}
