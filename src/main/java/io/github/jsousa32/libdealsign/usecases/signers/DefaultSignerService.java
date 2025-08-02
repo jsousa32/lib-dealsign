@@ -1,5 +1,9 @@
 package io.github.jsousa32.libdealsign.usecases.signers;
 
+import io.github.jsousa32.libdealsign.usecases.signers.models.create.SignerCreateRequest;
+import io.github.jsousa32.libdealsign.usecases.signers.models.create.SignerCreateResponse;
+import io.github.jsousa32.libdealsign.usecases.subgroups.models.create.SubgroupCreateRequest;
+
 import java.util.Objects;
 
 final class DefaultSignerService implements SignerService {
@@ -21,5 +25,10 @@ final class DefaultSignerService implements SignerService {
             final String anUrl
     ) {
         return new DefaultSignerService(aBearer, anUrl);
+    }
+
+    @Override
+    public SignerCreateResponse create(final SignerCreateRequest anInput) {
+        return DefaultSignerCreateUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
