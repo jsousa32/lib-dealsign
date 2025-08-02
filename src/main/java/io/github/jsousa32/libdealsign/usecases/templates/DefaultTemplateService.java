@@ -1,8 +1,11 @@
 package io.github.jsousa32.libdealsign.usecases.templates;
 
+import io.github.jsousa32.libdealsign.usecases.templates.models.patch.TemplatePatchRequest;
+import io.github.jsousa32.libdealsign.usecases.templates.models.patch.TemplatePatchResponse;
+
 import java.util.Objects;
 
-final class DefaultTemplateService implements  TemplateService {
+final class DefaultTemplateService implements TemplateService {
 
     private final String bearer;
 
@@ -21,5 +24,10 @@ final class DefaultTemplateService implements  TemplateService {
             final String anUrl
     ) {
         return new DefaultTemplateService(aBearer, anUrl);
+    }
+
+    @Override
+    public TemplatePatchResponse patch(final TemplatePatchRequest anInput) {
+        return DefaultTemplatePatchUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
