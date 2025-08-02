@@ -30,4 +30,9 @@ final class DefaultTemplateService implements TemplateService {
     public TemplatePatchResponse patch(final TemplatePatchRequest anInput) {
         return DefaultTemplatePatchUseCase.generate(this.bearer, this.url).execute(anInput);
     }
+
+    @Override
+    public void delete(final String anId) {
+        DefaultTemplateDeleteUseCase.generate(this.bearer, this.url).execute(anId);
+    }
 }

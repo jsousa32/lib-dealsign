@@ -13,4 +13,6 @@ public interface TemplateService {
     }
 
     TemplatePatchResponse patch(final TemplatePatchRequest anInput);
+
+    void delete(final String anId);
 }
