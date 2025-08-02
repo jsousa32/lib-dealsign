@@ -1,11 +1,11 @@
-package io.github.jsousa32.libdealsign.usecases.signers.models.update;
+package io.github.jsousa32.libdealsign.usecases.signers.models.common;
 
 import io.github.jsousa32.libdealsign.usecases.profiles.models.common.Profile;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class SignerUpdateResponse {
+public class SignerResponse {
 
     private String name;
 
@@ -15,7 +15,7 @@ public class SignerUpdateResponse {
 
     private List<Profile> profiles;
 
-    public SignerUpdateResponse() {
+    public SignerResponse() {
     }
 
     public String getName() {

@@ -1,9 +1,8 @@
 package io.github.jsousa32.libdealsign.usecases.signers;
 
+import io.github.jsousa32.libdealsign.usecases.signers.models.common.SignerResponse;
 import io.github.jsousa32.libdealsign.usecases.signers.models.create.SignerCreateRequest;
-import io.github.jsousa32.libdealsign.usecases.signers.models.create.SignerCreateResponse;
 import io.github.jsousa32.libdealsign.usecases.signers.models.update.SignerUpdateRequest;
-import io.github.jsousa32.libdealsign.usecases.signers.models.update.SignerUpdateResponse;
 
 public interface SignerService {
 
@@ -14,7 +13,7 @@ public interface SignerService {
         return DefaultSignerService.generate(aBearer, anUrl);
     }
 
-    SignerCreateResponse create(final SignerCreateRequest anInput);
+    SignerResponse create(final SignerCreateRequest anInput);
 
-    SignerUpdateResponse update(final SignerUpdateRequest anInput);
+    SignerResponse update(final SignerUpdateRequest anInput);
 }
