@@ -1,5 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.profiles.models.update;
 
+import io.github.jsousa32.libdealsign.usecases.profiles.models.common.Profile;
+
 import java.time.LocalDateTime;
 import java.util.List;
 

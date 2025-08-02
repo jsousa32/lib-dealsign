@@ -1,7 +1,4 @@
-package io.github.jsousa32.libdealsign.usecases.profiles.models.update;
-
-import io.github.jsousa32.libdealsign.usecases.profiles.models.common.Authentication;
-import io.github.jsousa32.libdealsign.usecases.profiles.models.common.Receivings;
+package io.github.jsousa32.libdealsign.usecases.profiles.models.common;
 
 import java.util.Set;
 
