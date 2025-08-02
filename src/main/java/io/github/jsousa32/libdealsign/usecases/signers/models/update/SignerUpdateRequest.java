@@ -1,6 +1,5 @@
 package io.github.jsousa32.libdealsign.usecases.signers.models.update;
 
-import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.signers.models.common.ProfileSigner;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
