@@ -1,6 +1,6 @@
-package io.github.jsousa32.libdealsign.usecases.signatures.models.common;
+package io.github.jsousa32.libdealsign.usecases.common_enums;
 
-public enum Status {
+public enum StatusSignature {
     LINKED,
     PENDING,
     VIEWED,

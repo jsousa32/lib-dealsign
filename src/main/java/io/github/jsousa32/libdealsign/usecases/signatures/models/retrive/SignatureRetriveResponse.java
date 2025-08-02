@@ -1,7 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.signatures.models.retrive;
 
-import io.github.jsousa32.libdealsign.usecases.signatures.models.common.Status;
-import io.github.jsousa32.libdealsign.usecases.subgroups.models.link_profiles.Type;
+import io.github.jsousa32.libdealsign.usecases.common_enums.StatusSignature;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Type;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -20,7 +20,7 @@ public class SignatureRetriveResponse {
 
     private LocalDateTime updatedAt;
 
-    private Status status;
+    private StatusSignature statusSignature;
 
     private Set<Type> type;
 
@@ -55,8 +55,8 @@ public class SignatureRetriveResponse {
         return updatedAt;
     }
 
-    public Status getStatus() {
-        return status;
+    public StatusSignature getStatus() {
+        return statusSignature;
     }
 
     public Set<Type> getType() {

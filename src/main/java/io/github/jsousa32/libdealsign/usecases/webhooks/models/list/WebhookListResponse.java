@@ -1,6 +1,6 @@
 package io.github.jsousa32.libdealsign.usecases.webhooks.models.list;
 
-import io.github.jsousa32.libdealsign.usecases.webhooks.common.Events;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Events;
 
 import java.util.Set;
 

@@ -1,7 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.profiles.models.create;
 
-import io.github.jsousa32.libdealsign.usecases.profiles.models.common.Authentication;
-import io.github.jsousa32.libdealsign.usecases.profiles.models.common.Receivings;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Authentication;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Receivings;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
 import java.util.HashSet;

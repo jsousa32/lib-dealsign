@@ -1,4 +1,4 @@
-package io.github.jsousa32.libdealsign.usecases.groups.models.common;
+package io.github.jsousa32.libdealsign.usecases.common_enums;
 
 public enum Authentication {
     EMAIL,

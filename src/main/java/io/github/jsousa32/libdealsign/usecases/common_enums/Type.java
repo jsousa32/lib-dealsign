@@ -1,4 +1,4 @@
-package io.github.jsousa32.libdealsign.usecases.subgroups.models.link_profiles;
+package io.github.jsousa32.libdealsign.usecases.common_enums;
 
 public enum Type {
     SIGNER,

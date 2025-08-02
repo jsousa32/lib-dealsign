@@ -1,4 +1,4 @@
-package io.github.jsousa32.libdealsign.usecases.webhooks.common;
+package io.github.jsousa32.libdealsign.usecases.common_enums;
 
 public enum Events {
     DOCUMENT_SEND,

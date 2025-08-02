@@ -1,4 +1,4 @@
-package io.github.jsousa32.libdealsign.usecases.document.models.retrive;
+package io.github.jsousa32.libdealsign.usecases.common_enums;
 
 public enum Status {
     OPEN,

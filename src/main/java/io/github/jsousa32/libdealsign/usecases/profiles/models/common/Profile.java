@@ -1,5 +1,8 @@
 package io.github.jsousa32.libdealsign.usecases.profiles.models.common;
 
+import io.github.jsousa32.libdealsign.usecases.common_enums.Authentication;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Receivings;
+
 import java.util.Set;
 
 public class Profile {

@@ -1,7 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.signatures.models.create;
 
-import io.github.jsousa32.libdealsign.usecases.groups.models.common.Authentication;
-import io.github.jsousa32.libdealsign.usecases.subgroups.models.link_profiles.Type;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Authentication;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Type;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
 import java.util.HashSet;

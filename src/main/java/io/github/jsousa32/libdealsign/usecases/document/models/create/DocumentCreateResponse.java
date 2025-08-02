@@ -1,6 +1,6 @@
 package io.github.jsousa32.libdealsign.usecases.document.models.create;
 
-import io.github.jsousa32.libdealsign.usecases.document.models.retrive.Status;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Status;
 
 import java.time.LocalDateTime;
 import java.util.Set;

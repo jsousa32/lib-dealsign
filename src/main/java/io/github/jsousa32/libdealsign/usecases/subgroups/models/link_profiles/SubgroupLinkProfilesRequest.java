@@ -1,5 +1,6 @@
 package io.github.jsousa32.libdealsign.usecases.subgroups.models.link_profiles;
 
+import io.github.jsousa32.libdealsign.usecases.common_enums.Type;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
 import java.util.HashSet;

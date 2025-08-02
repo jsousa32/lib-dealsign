@@ -1,6 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.envelopes.models.retrive;
 
-import io.github.jsousa32.libdealsign.usecases.envelopes.models.common.Status;
+
+import io.github.jsousa32.libdealsign.usecases.common_enums.Status;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope.Documents;
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package io.github.jsousa32.libdealsign.usecases.envelopes.models.mount_envelope;
 
-import io.github.jsousa32.libdealsign.usecases.envelopes.models.common.Status;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Status;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
