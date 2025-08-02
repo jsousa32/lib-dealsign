@@ -40,7 +40,7 @@ final class DefaultProfileUpdateUseCase extends UseCase<ProfileUpdateResponse, P
 
         final var httpEntity = HeadersUtils.generate(bearer, anInput);
 
-        return Optional.of(rest.exchange(this.url, HttpMethod.POST, httpEntity, ProfileUpdateResponse.class))
+        return Optional.of(rest.exchange(url, HttpMethod.PATCH, httpEntity, ProfileUpdateResponse.class))
                 .map(ResponseEntity::getBody)
                 .orElseThrow(() -> DealsignException.generate("Não foi possível cadastrar o perfil."));
     }
