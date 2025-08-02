@@ -1,5 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.document;
 
+import io.github.jsousa32.libdealsign.usecases.document.models.retrive_url.DocumentRetriveUrlResponse;
+
 import java.util.Objects;
 
 final class DefaultDocumentService implements DocumentService {
@@ -21,5 +23,10 @@ final class DefaultDocumentService implements DocumentService {
             final String anUrl
     ) {
         return new DefaultDocumentService(aBearer, anUrl);
+    }
+
+    @Override
+    public DocumentRetriveUrlResponse retrieveUrl(final String anId) {
+        return DefaultDocumentRetriveUrlUseCase.generate(this.bearer, this.url).execute(anId);
     }
 }

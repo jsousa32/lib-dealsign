@@ -1,5 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.document;
 
+import io.github.jsousa32.libdealsign.usecases.document.models.retrive_url.DocumentRetriveUrlResponse;
+
 public interface DocumentService {
 
     static DocumentService builder(
@@ -8,4 +10,6 @@ public interface DocumentService {
     ) {
         return DefaultDocumentService.generate(aBearer, anUrl);
     }
+
+    DocumentRetriveUrlResponse retrieveUrl(final String anId);
 }
