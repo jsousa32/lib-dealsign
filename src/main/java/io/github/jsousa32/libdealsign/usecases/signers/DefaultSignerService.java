@@ -36,4 +36,9 @@ final class DefaultSignerService implements SignerService {
     public SignerResponse update(SignerUpdateRequest anInput) {
         return DefaultSignerUpdateUseCase.generate(this.bearer, this.url).execute(anInput);
     }
+
+    @Override
+    public SignerResponse retrive(final String anId) {
+        return DefaultSignerRetriveUseCase.generate(this.bearer, this.url).execute(anId);
+    }
 }

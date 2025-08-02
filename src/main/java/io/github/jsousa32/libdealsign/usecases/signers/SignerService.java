@@ -16,4 +16,6 @@ public interface SignerService {
     SignerResponse create(final SignerCreateRequest anInput);
 
     SignerResponse update(final SignerUpdateRequest anInput);
+
+    SignerResponse retrive(final String anId);
 }
