@@ -2,6 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.profiles.models.create;
 
 import io.github.jsousa32.libdealsign.usecases.common_enums.Authentication;
 import io.github.jsousa32.libdealsign.usecases.common_enums.Receivings;
+import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateRequest;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
 import java.util.HashSet;
@@ -14,7 +15,7 @@ public class ProfileCreateRequest {
 
     private final String email;
 
-    private final String phoneNumber;
+    private String phoneNumber;
 
     private final Set<Authentication> authentications;
 
@@ -25,13 +26,11 @@ public class ProfileCreateRequest {
     private ProfileCreateRequest(
             final String aProfileUuid,
             final String anEmail,
-            final String aPhoneNumber,
             final Set<Authentication> anAuthentications,
             final Set<Receivings> aReceivings
     ) {
         this.signerUuid = aProfileUuid;
         this.email = anEmail;
-        this.phoneNumber = aPhoneNumber;
         this.authentications = anAuthentications;
         this.receivings = aReceivings;
         this.principal = true;
@@ -41,11 +40,22 @@ public class ProfileCreateRequest {
     public static ProfileCreateRequest generate(
             final String aProfileUuid,
             final String anEmail,
-            final String aPhoneNumber,
             final Set<Authentication> anAuthentications,
             final Set<Receivings> aReceivings
     ) {
-        return new ProfileCreateRequest(aProfileUuid, anEmail, aPhoneNumber, anAuthentications, aReceivings);
+        return new ProfileCreateRequest(aProfileUuid, anEmail, anAuthentications, aReceivings);
+    }
+
+    public static ProfileCreateRequest generate(
+            final String aProfileUuid,
+            final String anEmail
+    ) {
+        return new ProfileCreateRequest(aProfileUuid, anEmail, Set.of(Authentication.EMAIL), Set.of(Receivings.EMAIL));
+    }
+
+    public ProfileCreateRequest changePhoneNumber(final String aPhoneNumber) {
+        this.phoneNumber = aPhoneNumber;
+        return this;
     }
 
     public ProfileCreateRequest changePrincipal(final boolean aPrincipal) {
@@ -62,10 +72,6 @@ public class ProfileCreateRequest {
 
         if (getEmail() == null || getEmail().isBlank()) {
             errors.add("email");
-        }
-
-        if (getPhoneNumber() == null || getPhoneNumber().isBlank()) {
-            errors.add("phoneNumber");
         }
 
         if (getAuthentications().isEmpty()) {

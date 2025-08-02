@@ -5,6 +5,7 @@ import io.github.jsousa32.libdealsign.usecases.envelopes.EnvelopeService;
 import io.github.jsousa32.libdealsign.usecases.groups.GroupService;
 import io.github.jsousa32.libdealsign.usecases.profiles.ProfileService;
 import io.github.jsousa32.libdealsign.usecases.signatures.SignatureService;
+import io.github.jsousa32.libdealsign.usecases.signers.SignerService;
 import io.github.jsousa32.libdealsign.usecases.subgroups.SubgroupService;
 import io.github.jsousa32.libdealsign.usecases.templates.TemplateService;
 import io.github.jsousa32.libdealsign.usecases.webhooks.WebhookService;
@@ -68,5 +69,10 @@ final class DefaultDealsignService implements DealsignService {
     @Override
     public ProfileService profiles() {
         return ProfileService.builder(this.bearer, this.url);
+    }
+
+    @Override
+    public SignerService signers() {
+        return SignerService.builder(this.bearer, this.url);
     }
 }

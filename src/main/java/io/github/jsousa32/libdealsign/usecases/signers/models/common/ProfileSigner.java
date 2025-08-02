@@ -1,4 +1,4 @@
-package io.github.jsousa32.libdealsign.usecases.profiles.models.update;
+package io.github.jsousa32.libdealsign.usecases.signers.models.common;
 
 import io.github.jsousa32.libdealsign.usecases.common_enums.Authentication;
 import io.github.jsousa32.libdealsign.usecases.common_enums.Receivings;
@@ -8,9 +8,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-public class ProfileUpdateRequest {
-
-    private final String profileUuid;
+public class ProfileSigner {
 
     private final String email;
 
@@ -22,13 +20,11 @@ public class ProfileUpdateRequest {
 
     private boolean principal;
 
-    private ProfileUpdateRequest(
-            final String aProfileUuid,
+    private ProfileSigner(
             final String anEmail,
             final Set<Authentication> anAuthentications,
             final Set<Receivings> aReceivings
     ) {
-        this.profileUuid = aProfileUuid;
         this.email = anEmail;
         this.authentications = anAuthentications;
         this.receivings = aReceivings;
@@ -36,38 +32,32 @@ public class ProfileUpdateRequest {
         this.validate();
     }
 
-    public static ProfileUpdateRequest generate(
-            final String aProfileUuid,
-            final String anEmail
-    ) {
-        return new ProfileUpdateRequest(aProfileUuid, anEmail, Set.of(Authentication.EMAIL), Set.of(Receivings.EMAIL));
-    }
-
-    public static ProfileUpdateRequest generate(
-            final String aProfileUuid,
+    public static ProfileSigner generate(
             final String anEmail,
             final Set<Authentication> anAuthentications,
             final Set<Receivings> aReceivings
     ) {
-        return new ProfileUpdateRequest(aProfileUuid, anEmail, anAuthentications, aReceivings);
+        return new ProfileSigner(anEmail, anAuthentications, aReceivings);
     }
 
-    public ProfileUpdateRequest changePhoneNumber(final String aPhoneNumber) {
-        this.phoneNumber = aPhoneNumber;
+    public static ProfileSigner generate(
+            final String anEmail
+    ) {
+        return new ProfileSigner(anEmail, Set.of(Authentication.EMAIL), Set.of(Receivings.EMAIL));
+    }
+
+    public ProfileSigner changePhoneNumber(final String anPhoneNumber) {
+        this.phoneNumber = anPhoneNumber;
         return this;
     }
 
-    public ProfileUpdateRequest changePrincipal(final boolean aPrincipal) {
+    public ProfileSigner changePrincipal(final boolean aPrincipal) {
         this.principal = aPrincipal;
         return this;
     }
 
     private void validate() {
         final Set<String> errors = new HashSet<>();
-
-        if (getProfileUuid() == null || getProfileUuid().isBlank()) {
-            errors.add("profileUuid");
-        }
 
         if (getEmail() == null || getEmail().isBlank()) {
             errors.add("email");
@@ -82,10 +72,6 @@ public class ProfileUpdateRequest {
         }
 
         ErrorUtils.checkIfHasAnyError(errors);
-    }
-
-    public String getProfileUuid() {
-        return profileUuid;
     }
 
     public String getEmail() {
