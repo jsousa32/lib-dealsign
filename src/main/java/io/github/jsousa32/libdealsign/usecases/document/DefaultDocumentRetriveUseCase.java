@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
-public class DefaultDocumentRetriveUseCase extends UseCase<DocumentRetriveResponse, String> {
+final class DefaultDocumentRetriveUseCase extends UseCase<DocumentRetriveResponse, String> {
 
     private final String bearer;
 

@@ -5,7 +5,7 @@ import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
 import org.springframework.http.HttpMethod;
 
-public class DefaultTemplateDeleteUseCase extends UnitUseCase<String> {
+final class DefaultTemplateDeleteUseCase extends UnitUseCase<String> {
 
     private final String bearer;
 
