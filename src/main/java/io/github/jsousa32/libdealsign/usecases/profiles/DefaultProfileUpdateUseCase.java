@@ -11,13 +11,13 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
-final class DefaultProfileUpdateService extends UseCase<ProfileUpdateResponse, ProfileUpdateRequest> {
+final class DefaultProfileUpdateUseCase extends UseCase<ProfileUpdateResponse, ProfileUpdateRequest> {
 
     private final String bearer;
 
     private final String url;
 
-    private DefaultProfileUpdateService(
+    private DefaultProfileUpdateUseCase(
             final String anBearer,
             final String anUrl
     ) {
@@ -25,11 +25,11 @@ final class DefaultProfileUpdateService extends UseCase<ProfileUpdateResponse, P
         this.url = anUrl.concat("/profiles/edit-profile/");
     }
 
-    public static DefaultProfileUpdateService generate(
+    public static DefaultProfileUpdateUseCase generate(
             final String aBearer,
             final String anUrl
     ) {
-        return new DefaultProfileUpdateService(aBearer, anUrl);
+        return new DefaultProfileUpdateUseCase(aBearer, anUrl);
     }
 
     @Override

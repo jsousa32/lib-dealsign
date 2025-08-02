@@ -28,6 +28,6 @@ final class DefaultProfileService implements ProfileService {
 
     @Override
     public ProfileUpdateResponse update(final ProfileUpdateRequest anInput) {
-        return DefaultProfileUpdateService.generate(this.bearer, this.url).execute(anInput);
+        return DefaultProfileUpdateUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
