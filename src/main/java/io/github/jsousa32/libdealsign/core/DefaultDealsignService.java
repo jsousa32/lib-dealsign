@@ -5,6 +5,7 @@ import io.github.jsousa32.libdealsign.usecases.envelopes.EnvelopeService;
 import io.github.jsousa32.libdealsign.usecases.groups.GroupService;
 import io.github.jsousa32.libdealsign.usecases.signatures.SignatureService;
 import io.github.jsousa32.libdealsign.usecases.subgroups.SubgroupService;
+import io.github.jsousa32.libdealsign.usecases.templates.TemplateService;
 import io.github.jsousa32.libdealsign.usecases.webhooks.WebhookService;
 
 final class DefaultDealsignService implements DealsignService {
@@ -56,5 +57,10 @@ final class DefaultDealsignService implements DealsignService {
     @Override
     public DocumentService documents() {
         return DocumentService.builder(this.bearer, this.url);
+    }
+
+    @Override
+    public TemplateService templates() {
+        return TemplateService.builder(this.bearer, this.url);
     }
 }

@@ -42,7 +42,7 @@ public class DocumentSendRequest {
 
     private void validate() {
         if (getDocumentUuid() == null || getDocumentUuid().isBlank()) {
-            throw DealsignException.generate("O documentUuid nome é obrigatório.");
+            throw DealsignException.generate("O atributo documentUuid é obrigatório.");
         }
     }
 
