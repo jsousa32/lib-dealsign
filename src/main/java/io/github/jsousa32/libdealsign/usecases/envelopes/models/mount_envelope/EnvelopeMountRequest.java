@@ -15,6 +15,8 @@ public class EnvelopeMountRequest {
 
     private static final Logger log = LoggerFactory.getLogger(EnvelopeMountRequest.class);
 
+    private MultipartBodyBuilder form;
+
     private final List<MultipartBodyBuilder> documents;
 
     private final String name;
@@ -46,7 +48,15 @@ public class EnvelopeMountRequest {
 
     public EnvelopeMountRequest addAndRemoveNodeUuid(final String aNodeUuid) {
         this.nodeUuid = aNodeUuid;
+        this.form.part("nodeUuid", this.nodeUuid);
         return this;
+    }
+
+    private MultipartBodyBuilder form() {
+        final var form = GenerateFormUtils.generate();
+        form.part("name", this.name);
+        form.part("documents", this.documents);
+        return form;
     }
 
     private void validate() {
@@ -61,6 +71,8 @@ public class EnvelopeMountRequest {
         }
 
         ErrorUtils.checkIfHasAnyError(errors);
+
+        this.form = form();
     }
 
     private List<MultipartBodyBuilder> generateForm(final List<MultipartFile> aFiles) {
@@ -79,6 +91,10 @@ public class EnvelopeMountRequest {
         }
 
         return files;
+    }
+
+    public MultipartBodyBuilder getForm() {
+        return form;
     }
 
     public List<MultipartBodyBuilder> getDocuments() {

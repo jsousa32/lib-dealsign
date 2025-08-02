@@ -13,6 +13,10 @@ public final class GenerateFormUtils {
     private GenerateFormUtils() {
     }
 
+    public static MultipartBodyBuilder generate() {
+        return new MultipartBodyBuilder();
+    }
+
     public static MultipartBodyBuilder generate(final MultipartFile aFile) throws IOException {
         String filename = null;
 
