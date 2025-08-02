@@ -2,7 +2,10 @@ package io.github.jsousa32.libdealsign.usecases.signers;
 
 import io.github.jsousa32.libdealsign.usecases.signers.models.common.SignerResponse;
 import io.github.jsousa32.libdealsign.usecases.signers.models.create.SignerCreateRequest;
+import io.github.jsousa32.libdealsign.usecases.signers.models.multiple.SignerMultipleRequest;
 import io.github.jsousa32.libdealsign.usecases.signers.models.update.SignerUpdateRequest;
+
+import java.util.Set;
 
 public interface SignerService {
 
@@ -18,4 +21,6 @@ public interface SignerService {
     SignerResponse update(final SignerUpdateRequest anInput);
 
     SignerResponse retrive(final String anId);
+
+    Set<SignerResponse> multiples(final SignerMultipleRequest anInput);
 }

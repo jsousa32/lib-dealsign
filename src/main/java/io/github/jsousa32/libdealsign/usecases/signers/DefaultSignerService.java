@@ -2,9 +2,11 @@ package io.github.jsousa32.libdealsign.usecases.signers;
 
 import io.github.jsousa32.libdealsign.usecases.signers.models.common.SignerResponse;
 import io.github.jsousa32.libdealsign.usecases.signers.models.create.SignerCreateRequest;
+import io.github.jsousa32.libdealsign.usecases.signers.models.multiple.SignerMultipleRequest;
 import io.github.jsousa32.libdealsign.usecases.signers.models.update.SignerUpdateRequest;
 
 import java.util.Objects;
+import java.util.Set;
 
 final class DefaultSignerService implements SignerService {
 
@@ -40,5 +42,10 @@ final class DefaultSignerService implements SignerService {
     @Override
     public SignerResponse retrive(final String anId) {
         return DefaultSignerRetriveUseCase.generate(this.bearer, this.url).execute(anId);
+    }
+
+    @Override
+    public Set<SignerResponse> multiples(SignerMultipleRequest anInput) {
+        return DefaultSignerMultipleUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
