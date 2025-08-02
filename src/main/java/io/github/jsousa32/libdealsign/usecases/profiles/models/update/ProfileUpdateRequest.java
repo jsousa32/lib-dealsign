@@ -14,7 +14,7 @@ public class ProfileUpdateRequest {
 
     private final String email;
 
-    private final String phoneNumber;
+    private String phoneNumber;
 
     private final Set<Authentication> authentications;
 
@@ -25,13 +25,11 @@ public class ProfileUpdateRequest {
     private ProfileUpdateRequest(
             final String aProfileUuid,
             final String anEmail,
-            final String aPhoneNumber,
             final Set<Authentication> anAuthentications,
             final Set<Receivings> aReceivings
     ) {
         this.profileUuid = aProfileUuid;
         this.email = anEmail;
-        this.phoneNumber = aPhoneNumber;
         this.authentications = anAuthentications;
         this.receivings = aReceivings;
         this.principal = true;
@@ -40,12 +38,23 @@ public class ProfileUpdateRequest {
 
     public static ProfileUpdateRequest generate(
             final String aProfileUuid,
+            final String anEmail
+    ) {
+        return new ProfileUpdateRequest(aProfileUuid, anEmail, Set.of(Authentication.EMAIL), Set.of(Receivings.EMAIL));
+    }
+
+    public static ProfileUpdateRequest generate(
+            final String aProfileUuid,
             final String anEmail,
-            final String aPhoneNumber,
             final Set<Authentication> anAuthentications,
             final Set<Receivings> aReceivings
     ) {
-        return new ProfileUpdateRequest(aProfileUuid, anEmail, aPhoneNumber, anAuthentications, aReceivings);
+        return new ProfileUpdateRequest(aProfileUuid, anEmail, anAuthentications, aReceivings);
+    }
+
+    public ProfileUpdateRequest changePhoneNumber(final String aPhoneNumber) {
+        this.phoneNumber = aPhoneNumber;
+        return this;
     }
 
     public ProfileUpdateRequest changePrincipal(final boolean aPrincipal) {
@@ -62,10 +71,6 @@ public class ProfileUpdateRequest {
 
         if (getEmail() == null || getEmail().isBlank()) {
             errors.add("email");
-        }
-
-        if (getPhoneNumber() == null || getPhoneNumber().isBlank()) {
-            errors.add("phoneNumber");
         }
 
         if (getAuthentications().isEmpty()) {
