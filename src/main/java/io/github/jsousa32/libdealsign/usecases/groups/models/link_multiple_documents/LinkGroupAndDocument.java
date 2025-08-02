@@ -78,11 +78,11 @@ public class LinkGroupAndDocument {
     private void validate() {
         final Set<String> errors = new HashSet<>();
 
-        if (getDocumentsUuid() == null || getDocumentsUuid().isEmpty()) {
+        if (getDocumentsUuid().isEmpty()) {
             errors.add("documentsUuid");
         }
 
-        if (getGroupsUuid() == null || getGroupsUuid().isEmpty()) {
+        if (getGroupsUuid().isEmpty()) {
             errors.add("groupUuid");
         }
 
@@ -90,11 +90,11 @@ public class LinkGroupAndDocument {
     }
 
     public Set<String> getDocumentsUuid() {
-        return documentsUuid;
+        return Optional.ofNullable(this.documentsUuid).orElseGet(HashSet::new);
     }
 
     public Set<String> getGroupsUuid() {
-        return groupsUuid;
+        return Optional.ofNullable(this.groupsUuid).orElseGet(HashSet::new);
     }
 
     public boolean isRefusable() {

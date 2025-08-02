@@ -33,7 +33,7 @@ public class GroupUpdateRequest {
     }
 
     public GroupUpdateRequest addSubgroupUuid(final String aSubgroupUuid) {
-        if (aSubgroupUuid == null || !aSubgroupUuid.isEmpty()) {
+        if (aSubgroupUuid != null && !aSubgroupUuid.isEmpty()) {
             getSubGroupsUuid().add(aSubgroupUuid);
         }
 
@@ -41,7 +41,7 @@ public class GroupUpdateRequest {
     }
 
     public GroupUpdateRequest removeSubgroupUuid(final String aSubgroupUuid) {
-        if (aSubgroupUuid == null || !aSubgroupUuid.isEmpty()) {
+        if (aSubgroupUuid != null && !aSubgroupUuid.isEmpty()) {
             getSubGroupsUuid().removeIf(p -> p.equals(aSubgroupUuid));
         }
 

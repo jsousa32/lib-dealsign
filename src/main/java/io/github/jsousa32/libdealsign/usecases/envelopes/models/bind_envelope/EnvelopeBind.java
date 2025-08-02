@@ -47,11 +47,11 @@ public class EnvelopeBind {
     private void validate() {
         final Set<String> errors = new HashSet<>();
 
-        if (getSignerUuid() == null || getSignerUuid().isEmpty()) {
+        if (getSignerUuid() == null || getSignerUuid().isBlank()) {
             errors.add("signerUuid");
         }
 
-        if (getProfileUuid() == null || getProfileUuid().isEmpty()) {
+        if (getProfileUuid() == null || getProfileUuid().isBlank()) {
             errors.add("profileUuid");
         }
 
@@ -59,7 +59,7 @@ public class EnvelopeBind {
             errors.add("refusable");
         }
 
-        if (getType().isEmpty()) {
+        if (getType() == null) {
             errors.add("type");
         }
 

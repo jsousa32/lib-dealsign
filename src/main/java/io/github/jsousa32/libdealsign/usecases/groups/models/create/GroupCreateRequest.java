@@ -16,7 +16,7 @@ public class GroupCreateRequest {
     }
 
     private void validate() {
-        if (getName() == null || getName().isEmpty()) {
+        if (getName() == null || getName().isBlank()) {
             throw DealsignException.generate("O atributo nome é obrigatório.");
         }
     }

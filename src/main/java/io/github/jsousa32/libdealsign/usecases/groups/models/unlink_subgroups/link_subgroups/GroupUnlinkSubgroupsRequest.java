@@ -3,6 +3,7 @@ package io.github.jsousa32.libdealsign.usecases.groups.models.unlink_subgroups.l
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class GroupUnlinkSubgroupsRequest {
@@ -30,11 +31,11 @@ public class GroupUnlinkSubgroupsRequest {
     private void validate() {
         final Set<String> errors = new HashSet<>();
 
-        if (getGroupUuid() == null || getGroupUuid().isEmpty()) {
+        if (getGroupUuid() == null || getGroupUuid().isBlank()) {
             errors.add("groupUuid");
         }
 
-        if (getSubGroupsUuid() == null || getSubGroupsUuid().isEmpty()) {
+        if (getSubGroupsUuid().isEmpty()) {
             errors.add("subGroupsUuid");
         }
 
@@ -46,6 +47,6 @@ public class GroupUnlinkSubgroupsRequest {
     }
 
     public Set<String> getSubGroupsUuid() {
-        return subGroupsUuid;
+        return Optional.ofNullable(subGroupsUuid).orElseGet(HashSet::new);
     }
 }

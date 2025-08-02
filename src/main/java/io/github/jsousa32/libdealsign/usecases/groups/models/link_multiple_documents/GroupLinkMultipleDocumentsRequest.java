@@ -3,6 +3,7 @@ package io.github.jsousa32.libdealsign.usecases.groups.models.link_multiple_docu
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class GroupLinkMultipleDocumentsRequest {
@@ -23,11 +24,11 @@ public class GroupLinkMultipleDocumentsRequest {
     private void validate() {
         final Set<String> errors = new HashSet<>();
 
-        if (getEnvelopeUuid() == null || getEnvelopeUuid().isEmpty()) {
+        if (getEnvelopeUuid() == null || getEnvelopeUuid().isBlank()) {
             errors.add("envelopeUuid");
         }
 
-        if (getLinkGroupAndDocuments() == null || getLinkGroupAndDocuments().isEmpty()) {
+        if (getLinkGroupAndDocuments().isEmpty()) {
             errors.add("linkGroupAndDocuments");
         }
 
@@ -46,6 +47,6 @@ public class GroupLinkMultipleDocumentsRequest {
     }
 
     public Set<LinkGroupAndDocument> getLinkGroupAndDocuments() {
-        return linkGroupAndDocuments;
+        return Optional.ofNullable(linkGroupAndDocuments).orElseGet(HashSet::new);
     }
 }

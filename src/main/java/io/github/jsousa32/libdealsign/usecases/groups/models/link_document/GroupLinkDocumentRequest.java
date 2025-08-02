@@ -68,7 +68,7 @@ public class GroupLinkDocumentRequest {
     private void validate() {
         final Set<String> errors = new HashSet<>();
 
-        if (getDocumentUuid() == null || getDocumentUuid().isEmpty()) {
+        if (getDocumentUuid() == null || getDocumentUuid().isBlank()) {
             errors.add("documentUuid");
         }
 

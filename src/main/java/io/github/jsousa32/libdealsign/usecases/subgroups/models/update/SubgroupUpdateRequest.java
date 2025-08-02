@@ -41,7 +41,7 @@ public class SubgroupUpdateRequest {
     }
 
     public SubgroupUpdateRequest addProfileUuid(final Set<String> aProfileUuid) {
-        if (aProfileUuid.isEmpty()) {
+        if (!aProfileUuid.isEmpty()) {
             getProfilesUuid().addAll(aProfileUuid);
         }
 
