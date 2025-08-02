@@ -3,6 +3,7 @@ package io.github.jsousa32.libdealsign.core;
 import io.github.jsousa32.libdealsign.usecases.document.DocumentService;
 import io.github.jsousa32.libdealsign.usecases.envelopes.EnvelopeService;
 import io.github.jsousa32.libdealsign.usecases.groups.GroupService;
+import io.github.jsousa32.libdealsign.usecases.profiles.ProfileService;
 import io.github.jsousa32.libdealsign.usecases.signatures.SignatureService;
 import io.github.jsousa32.libdealsign.usecases.subgroups.SubgroupService;
 import io.github.jsousa32.libdealsign.usecases.templates.TemplateService;
@@ -30,4 +31,6 @@ public interface DealsignService {
     DocumentService documents();
 
     TemplateService templates();
+
+    ProfileService profiles();
 }
