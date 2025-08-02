@@ -38,7 +38,7 @@ final class DefaultSignerUpdateUseCase extends UseCase<SignerResponse, SignerUpd
 
         final var httpEntity = HeadersUtils.generate(bearer, anInput);
 
-        return Optional.of(rest.exchange(this.url, HttpMethod.POST, httpEntity, SignerResponse.class))
+        return Optional.of(rest.exchange(this.url, HttpMethod.PATCH, httpEntity, SignerResponse.class))
                 .map(ResponseEntity::getBody)
                 .orElseThrow(() -> DealsignException.generate("Não foi possível atualizar o signatário."));
     }
