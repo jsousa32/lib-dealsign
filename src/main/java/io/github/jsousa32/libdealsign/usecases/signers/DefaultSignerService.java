@@ -2,7 +2,8 @@ package io.github.jsousa32.libdealsign.usecases.signers;
 
 import io.github.jsousa32.libdealsign.usecases.signers.models.create.SignerCreateRequest;
 import io.github.jsousa32.libdealsign.usecases.signers.models.create.SignerCreateResponse;
-import io.github.jsousa32.libdealsign.usecases.subgroups.models.create.SubgroupCreateRequest;
+import io.github.jsousa32.libdealsign.usecases.signers.models.update.SignerUpdateRequest;
+import io.github.jsousa32.libdealsign.usecases.signers.models.update.SignerUpdateResponse;
 
 import java.util.Objects;
 
@@ -30,5 +31,10 @@ final class DefaultSignerService implements SignerService {
     @Override
     public SignerCreateResponse create(final SignerCreateRequest anInput) {
         return DefaultSignerCreateUseCase.generate(this.bearer, this.url).execute(anInput);
+    }
+
+    @Override
+    public SignerUpdateResponse update(SignerUpdateRequest anInput) {
+        return DefaultSignerUpdateUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
