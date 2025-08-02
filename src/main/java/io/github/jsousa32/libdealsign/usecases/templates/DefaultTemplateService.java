@@ -1,5 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.templates;
 
+import io.github.jsousa32.libdealsign.usecases.templates.models.create.TemplateCreateRequest;
+import io.github.jsousa32.libdealsign.usecases.templates.models.create.TemplateCreateResponse;
 import io.github.jsousa32.libdealsign.usecases.templates.models.patch.TemplatePatchRequest;
 import io.github.jsousa32.libdealsign.usecases.templates.models.patch.TemplatePatchResponse;
 
@@ -34,5 +36,10 @@ final class DefaultTemplateService implements TemplateService {
     @Override
     public void delete(final String anId) {
         DefaultTemplateDeleteUseCase.generate(this.bearer, this.url).execute(anId);
+    }
+
+    @Override
+    public TemplateCreateResponse create(final TemplateCreateRequest anInput) {
+        return DefaultTemplateCreateUseCase.generate(this.bearer, this.url).execute(anInput);
     }
 }
