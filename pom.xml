@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.github.jsousa32</groupId>
     <artifactId>lib-dealsign</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Biblioteca Dealsign</description>
     <url>https://github.com/jsousa32/lib-dealsign</url>
@@ -47,9 +47,14 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <version>2.2.220</version>
             <scope>runtime</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.reactivestreams</groupId>
+            <artifactId>reactive-streams</artifactId>
+            <version>1.0.3</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
