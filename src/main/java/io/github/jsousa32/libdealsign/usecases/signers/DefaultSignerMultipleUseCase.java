@@ -6,6 +6,7 @@ import io.github.jsousa32.libdealsign.usecases.signers.models.common.SignerRespo
 import io.github.jsousa32.libdealsign.usecases.signers.models.multiple.SignerMultipleRequest;
 
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
+import org.springframework.core.ParameterizedTypeReference;
 
 import java.util.Set;
 
@@ -30,7 +31,8 @@ final class DefaultSignerMultipleUseCase extends UseCase<Set<SignerResponse>, Si
 
     @Override
     public Set<SignerResponse> execute(final SignerMultipleRequest anInput) {
-        return RequestUtils.post(this.bearer, url, anInput, SignerResponse.class)
-         .orElseThrow(() -> DealsignException.generate("Não foi possível cadastrar múltiplos signatários."));
+        return RequestUtils.postSet(this.bearer, url, anInput, new ParameterizedTypeReference<Set<SignerResponse>>() {
+        })
+                .orElseThrow(() -> DealsignException.generate("Não foi possível cadastrar múltiplos signatários."));
     }
 }

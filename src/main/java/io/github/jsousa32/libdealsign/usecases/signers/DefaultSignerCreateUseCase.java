@@ -4,13 +4,7 @@ import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.signers.models.common.SignerResponse;
 import io.github.jsousa32.libdealsign.usecases.signers.models.create.SignerCreateRequest;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
-
 final class DefaultSignerCreateUseCase extends UseCase<SignerResponse, SignerCreateRequest> {
 
     private final String bearer;
