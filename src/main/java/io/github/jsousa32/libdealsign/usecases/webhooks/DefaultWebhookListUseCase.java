@@ -3,15 +3,10 @@ package io.github.jsousa32.libdealsign.usecases.webhooks;
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.NullaryUseCase;
 import io.github.jsousa32.libdealsign.usecases.webhooks.models.list.WebhookListResponse;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Optional;
-
 final class DefaultWebhookListUseCase extends NullaryUseCase<List<WebhookListResponse>> {
 
     private final String bearer;

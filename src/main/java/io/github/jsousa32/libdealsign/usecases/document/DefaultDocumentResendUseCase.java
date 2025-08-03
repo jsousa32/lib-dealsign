@@ -29,10 +29,6 @@ final class DefaultDocumentResendUseCase extends UnitUseCase<DocumentResendReque
 
     @Override
     public void execute(final DocumentResendRequest anInput) {
-        final var rest = RequestUtils.getInstance();
-
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
-
-        rest.exchange(url, HttpMethod.POST, httpEntity, Void.class);
+        RequestUtils.post(this.bearer, this.url, anInput);
     }
 }

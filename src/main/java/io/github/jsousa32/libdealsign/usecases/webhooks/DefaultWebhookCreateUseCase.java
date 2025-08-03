@@ -4,12 +4,7 @@ import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.webhooks.models.create.WebhookCreateRequest;
 import io.github.jsousa32.libdealsign.usecases.webhooks.models.create.WebhookCreateResponse;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
 
 final class DefaultWebhookCreateUseCase extends UseCase<WebhookCreateResponse, WebhookCreateRequest> {
 

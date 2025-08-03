@@ -2,9 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.webhooks;
 
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.webhooks.models.update.WebhookUpdateRequest;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
-import org.springframework.http.HttpMethod;
 
 final class DefaultWebhookUpdateUseCase extends UnitUseCase<WebhookUpdateRequest> {
 

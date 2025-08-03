@@ -2,9 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.subgroups;
 
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.subgroups.models.link_profiles.SubgroupLinkProfilesRequest;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
-import org.springframework.http.HttpMethod;
 
 final class DefaultSubgroupLinkProfilesUseCase extends UnitUseCase<SubgroupLinkProfilesRequest> {
 
@@ -29,10 +27,6 @@ final class DefaultSubgroupLinkProfilesUseCase extends UnitUseCase<SubgroupLinkP
 
     @Override
     public void execute(final SubgroupLinkProfilesRequest anInput) {
-        final var rest = RequestUtils.getInstance();
-
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
-
-        rest.exchange(this.url, HttpMethod.POST, httpEntity, Void.class);
+        RequestUtils.patch(this.bearer, this.url, anInput);
     }
 }

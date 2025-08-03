@@ -2,9 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.groups;
 
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.groups.models.link_subgroups.GroupLinkSubgroupsRequest;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
-import org.springframework.http.HttpMethod;
 
 final class DefaultGroupLinkSubgroupsUseCase extends UnitUseCase<GroupLinkSubgroupsRequest> {
 
@@ -14,25 +12,19 @@ final class DefaultGroupLinkSubgroupsUseCase extends UnitUseCase<GroupLinkSubgro
 
     private DefaultGroupLinkSubgroupsUseCase(
             final String anBearer,
-            final String anUrl
-    ) {
+            final String anUrl) {
         this.bearer = anBearer;
         this.url = anUrl.concat("/groups/link-subgroups");
     }
 
     public static DefaultGroupLinkSubgroupsUseCase generate(
             final String aBearer,
-            final String anUrl
-    ) {
+            final String anUrl) {
         return new DefaultGroupLinkSubgroupsUseCase(aBearer, anUrl);
     }
 
     @Override
     public void execute(final GroupLinkSubgroupsRequest anInput) {
-        final var rest = RequestUtils.getInstance();
-
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
-
-        rest.exchange(this.url, HttpMethod.POST, httpEntity, Void.class);
+        RequestUtils.post(this.bearer, this.url, anInput);
     }
 }

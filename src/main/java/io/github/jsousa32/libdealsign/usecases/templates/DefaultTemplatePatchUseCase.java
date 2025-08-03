@@ -5,7 +5,6 @@ import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.templates.models.patch.TemplatePatchRequest;
 import io.github.jsousa32.libdealsign.usecases.templates.models.patch.TemplatePatchResponse;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
-import org.springframework.http.HttpMethod;
 
 final class DefaultTemplatePatchUseCase extends UseCase<TemplatePatchResponse, TemplatePatchRequest> {
 

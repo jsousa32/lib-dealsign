@@ -1,9 +1,7 @@
 package io.github.jsousa32.libdealsign.usecases.templates;
 
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
-import org.springframework.http.HttpMethod;
 
 final class DefaultTemplateDeleteUseCase extends UnitUseCase<String> {
 

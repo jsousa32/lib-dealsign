@@ -4,12 +4,8 @@ import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.subgroups.models.create.SubgroupCreateRequest;
 import io.github.jsousa32.libdealsign.usecases.subgroups.models.create.SubgroupCreateResponse;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 
-import java.util.Optional;
 
 final class DefaultSubgroupCreateUseCase extends UseCase<SubgroupCreateResponse, SubgroupCreateRequest> {
 
@@ -34,12 +30,7 @@ final class DefaultSubgroupCreateUseCase extends UseCase<SubgroupCreateResponse,
 
     @Override
     public SubgroupCreateResponse execute(final SubgroupCreateRequest anInput) {
-        final var rest = RequestUtils.getInstance();
-
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
-
-        return Optional.of(rest.exchange(this.url, HttpMethod.POST, httpEntity, SubgroupCreateResponse.class))
-                .map(ResponseEntity::getBody)
-                .orElseThrow(() -> DealsignException.generate("Não foi possível cadastrar o subgroup."));
+        return RequestUtils.post(this.bearer, this.url, anInput, SubgroupCreateResponse.class)
+        .orElseThrow(() -> DealsignException.generate("Não foi possível criar um sub-grupo"));
     }
 }

@@ -110,9 +110,9 @@ public final class RequestUtils {
     }
 
     public static <T> Optional<T> patch(
+            final String aBearer,
             final String anUlr,
             final Object anInput,
-            final String aBearer,
             final Class<T> aResponseType
     ) {
         final var req = HttpRequest

@@ -4,12 +4,7 @@ import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.templates.models.create.TemplateCreateRequest;
 import io.github.jsousa32.libdealsign.usecases.templates.models.create.TemplateCreateResponse;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RequestUtils;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
 
 final class DefaultTemplateCreateUseCase extends UseCase<TemplateCreateResponse, TemplateCreateRequest> {
 
@@ -34,12 +29,7 @@ final class DefaultTemplateCreateUseCase extends UseCase<TemplateCreateResponse,
 
     @Override
     public TemplateCreateResponse execute(final TemplateCreateRequest anInput) {
-        final var rest = RequestUtils.getInstance();
-
-        final var httpEntity = HeadersUtils.generateForm(bearer, anInput.getForm());
-
-        return Optional.of(rest.exchange(this.url, HttpMethod.POST, httpEntity, TemplateCreateResponse.class))
-                .map(ResponseEntity::getBody)
-                .orElseThrow(() -> DealsignException.generate("Não foi possível criar o documento."));
+        return RequestUtils.post(this.bearer, this.url, anInput, TemplateCreateResponse.class)
+        .orElseThrow(() -> DealsignException.generate("Não foi possível criar um template"));
     }
 }

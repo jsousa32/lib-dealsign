@@ -34,12 +34,7 @@ final class DefaultSignerCreateUseCase extends UseCase<SignerResponse, SignerCre
 
     @Override
     public SignerResponse execute(final SignerCreateRequest anInput) {
-        final var rest = RequestUtils.getInstance();
-
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
-
-        return Optional.of(rest.exchange(this.url, HttpMethod.POST, httpEntity, SignerResponse.class))
-                .map(ResponseEntity::getBody)
-                .orElseThrow(() -> DealsignException.generate("Não foi possível cadastrar o signatário."));
+        return RequestUtils.post(this.bearer, this.url, anInput, SignerResponse.class)
+            .orElseThrow(() -> DealsignException.generate("Não foi possível criar um signatário"));
     }
 }
