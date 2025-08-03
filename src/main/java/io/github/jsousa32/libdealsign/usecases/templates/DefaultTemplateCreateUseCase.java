@@ -5,7 +5,7 @@ import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.templates.models.create.TemplateCreateRequest;
 import io.github.jsousa32.libdealsign.usecases.templates.models.create.TemplateCreateResponse;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
@@ -34,7 +34,7 @@ final class DefaultTemplateCreateUseCase extends UseCase<TemplateCreateResponse,
 
     @Override
     public TemplateCreateResponse execute(final TemplateCreateRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var httpEntity = HeadersUtils.generateForm(bearer, anInput.getForm());
 

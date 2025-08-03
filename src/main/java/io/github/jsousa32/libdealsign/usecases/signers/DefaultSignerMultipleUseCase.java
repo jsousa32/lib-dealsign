@@ -5,7 +5,7 @@ import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.signers.models.common.SignerResponse;
 import io.github.jsousa32.libdealsign.usecases.signers.models.multiple.SignerMultipleRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +39,7 @@ final class DefaultSignerMultipleUseCase extends UseCase<Set<SignerResponse>, Si
     public Set<SignerResponse> execute(final SignerMultipleRequest anInput) {
         final var body = new HashSet<>(anInput.getMultiples());
 
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var httpEntity = HeadersUtils.generate(bearer, body);
 

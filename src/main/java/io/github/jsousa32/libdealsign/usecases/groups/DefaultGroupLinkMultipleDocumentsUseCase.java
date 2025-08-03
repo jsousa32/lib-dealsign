@@ -3,7 +3,7 @@ package io.github.jsousa32.libdealsign.usecases.groups;
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.groups.models.link_multiple_documents.GroupLinkMultipleDocumentsRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 
 final class DefaultGroupLinkMultipleDocumentsUseCase extends UnitUseCase<GroupLinkMultipleDocumentsRequest> {
@@ -29,7 +29,7 @@ final class DefaultGroupLinkMultipleDocumentsUseCase extends UnitUseCase<GroupLi
 
     @Override
     public void execute(final GroupLinkMultipleDocumentsRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var url = this.url.concat(anInput.getEnvelopeUuid());
 

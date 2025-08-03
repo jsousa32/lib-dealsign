@@ -2,7 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.webhooks;
 
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 
 final class DefaultWebhookDeleteUseCase extends UnitUseCase<String> {
@@ -28,12 +28,8 @@ final class DefaultWebhookDeleteUseCase extends UnitUseCase<String> {
 
     @Override
     public void execute(final String anId) {
-        final var rest = RestTemplateUtils.getInstance();
-
         final var url = this.url.concat(anId);
 
-        final var httpEntity = HeadersUtils.generate(bearer);
-
-        rest.exchange(url, HttpMethod.DELETE, httpEntity, Void.class);
+        RequestUtils.delete(this.bearer, url);
     }
 }

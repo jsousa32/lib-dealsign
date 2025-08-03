@@ -4,7 +4,7 @@ import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.NullaryUseCase;
 import io.github.jsousa32.libdealsign.usecases.webhooks.models.list.WebhookListResponse;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -35,15 +35,9 @@ final class DefaultWebhookListUseCase extends NullaryUseCase<List<WebhookListRes
 
     @Override
     public List<WebhookListResponse> execute() {
-        final var rest = RestTemplateUtils.getInstance();
+        final var response = new ParameterizedTypeReference<List<WebhookListResponse>>() {};
 
-        final var response = new ParameterizedTypeReference<List<WebhookListResponse>>() {
-        };
-
-        final var httpEntity = HeadersUtils.generate(bearer);
-
-        return Optional.of(rest.exchange(this.url, HttpMethod.GET, httpEntity, response))
-                .map(ResponseEntity::getBody)
+        return RequestUtils.get(this.bearer, this.url, response)
                 .orElseThrow(() -> DealsignException.generate("Não foi possível listar os webhooks."));
     }
 }

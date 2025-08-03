@@ -5,7 +5,7 @@ import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.groups.models.create.GroupCreateRequest;
 import io.github.jsousa32.libdealsign.usecases.groups.models.create.GroupCreateResponse;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
@@ -34,7 +34,7 @@ final class DefaultGroupCreateUseCase extends UseCase<GroupCreateResponse, Group
 
     @Override
     public GroupCreateResponse execute(final GroupCreateRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var httpEntity = HeadersUtils.generate(bearer, anInput);
 

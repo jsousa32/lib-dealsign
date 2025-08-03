@@ -3,7 +3,7 @@ package io.github.jsousa32.libdealsign.usecases.envelopes;
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.send_envelope.EnvelopeSendRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 
 final class DefaultEnvelopeSendUseCase extends UnitUseCase<EnvelopeSendRequest> {
@@ -29,7 +29,7 @@ final class DefaultEnvelopeSendUseCase extends UnitUseCase<EnvelopeSendRequest> 
 
     @Override
     public void execute(final EnvelopeSendRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var httpEntity = HeadersUtils.generate(bearer, anInput);
 

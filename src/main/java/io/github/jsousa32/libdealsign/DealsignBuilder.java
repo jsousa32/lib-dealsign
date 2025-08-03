@@ -5,7 +5,7 @@ import io.github.jsousa32.libdealsign.domain.Authentication;
 import io.github.jsousa32.libdealsign.domain.AuthenticationRepository;
 import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import io.github.jsousa32.libdealsign.utils.validators.EmailValidator;
 import io.github.jsousa32.libdealsign.utils.validators.UrlValidator;
 
@@ -79,7 +79,7 @@ public final class DealsignBuilder {
     }
 
     private String generateBearerTokenFromDealsign() {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var dealsignBody = DealsignAuthRequest.generate(this.email, this.uuid);
         final var finalUrl = this.url.concat("/tokens");

@@ -2,7 +2,7 @@ package io.github.jsousa32.libdealsign.usecases.profiles;
 
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 
 final class DefaultProfileDeleteUseCase extends UnitUseCase<String> {
@@ -28,7 +28,7 @@ final class DefaultProfileDeleteUseCase extends UnitUseCase<String> {
 
     @Override
     public void execute(final String anId) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var url = this.url.concat(anId);
 

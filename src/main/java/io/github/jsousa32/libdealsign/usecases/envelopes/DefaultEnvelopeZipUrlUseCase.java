@@ -4,7 +4,7 @@ import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.envelopes.models.zip_url.EnvelopeZipUrlResponse;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
@@ -33,7 +33,7 @@ final class DefaultEnvelopeZipUrlUseCase extends UseCase<EnvelopeZipUrlResponse,
 
     @Override
     public EnvelopeZipUrlResponse execute(final String anId) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var url = this.url.concat(anId);
 

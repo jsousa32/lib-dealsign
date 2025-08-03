@@ -3,7 +3,7 @@ package io.github.jsousa32.libdealsign.usecases.document;
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.document.models.resend.DocumentResendRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 
 final class DefaultDocumentResendUseCase extends UnitUseCase<DocumentResendRequest> {
@@ -29,7 +29,7 @@ final class DefaultDocumentResendUseCase extends UnitUseCase<DocumentResendReque
 
     @Override
     public void execute(final DocumentResendRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var httpEntity = HeadersUtils.generate(bearer, anInput);
 

@@ -3,7 +3,7 @@ package io.github.jsousa32.libdealsign.usecases.groups;
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.groups.models.link_document.GroupLinkDocumentRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 
 final class DefaultGroupLinkDocumentUseCase extends UnitUseCase<GroupLinkDocumentRequest> {
@@ -29,7 +29,7 @@ final class DefaultGroupLinkDocumentUseCase extends UnitUseCase<GroupLinkDocumen
 
     @Override
     public void execute(final GroupLinkDocumentRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var httpEntity = HeadersUtils.generate(bearer, anInput);
 

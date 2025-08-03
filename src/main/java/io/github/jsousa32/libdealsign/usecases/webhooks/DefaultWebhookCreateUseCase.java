@@ -5,7 +5,7 @@ import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.webhooks.models.create.WebhookCreateRequest;
 import io.github.jsousa32.libdealsign.usecases.webhooks.models.create.WebhookCreateResponse;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
@@ -34,12 +34,7 @@ final class DefaultWebhookCreateUseCase extends UseCase<WebhookCreateResponse, W
 
     @Override
     public WebhookCreateResponse execute(final WebhookCreateRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
-
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
-
-        return Optional.of(rest.exchange(this.url, HttpMethod.POST, httpEntity, WebhookCreateResponse.class))
-                .map(ResponseEntity::getBody)
+        return RequestUtils.post(this.bearer, this.url, anInput, WebhookCreateResponse.class)
                 .orElseThrow(() -> DealsignException.generate("Não foi possível cadastrar o webhook."));
     }
 }

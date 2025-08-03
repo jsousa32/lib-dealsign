@@ -3,7 +3,7 @@ package io.github.jsousa32.libdealsign.usecases.groups;
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.groups.models.unlink_subgroups.link_subgroups.GroupUnlinkSubgroupsRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 
 final class DefaultGroupUnlinkSubgroupsUseCase extends UnitUseCase<GroupUnlinkSubgroupsRequest> {
@@ -29,7 +29,7 @@ final class DefaultGroupUnlinkSubgroupsUseCase extends UnitUseCase<GroupUnlinkSu
 
     @Override
     public void execute(final GroupUnlinkSubgroupsRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var httpEntity = HeadersUtils.generate(bearer, anInput);
 

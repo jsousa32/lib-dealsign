@@ -4,12 +4,8 @@ import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateRequest;
 import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateResponse;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
 
 final class DefaultProfileUpdateUseCase extends UseCase<ProfileUpdateResponse, ProfileUpdateRequest> {
 
@@ -34,14 +30,9 @@ final class DefaultProfileUpdateUseCase extends UseCase<ProfileUpdateResponse, P
 
     @Override
     public ProfileUpdateResponse execute(final ProfileUpdateRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
-
         final var url = this.url.concat(anInput.getProfileUuid());
 
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
-
-        return Optional.of(rest.exchange(url, HttpMethod.PATCH, httpEntity, ProfileUpdateResponse.class))
-                .map(ResponseEntity::getBody)
-                .orElseThrow(() -> DealsignException.generate("Não foi possível cadastrar o perfil."));
+        return RequestUtils.patch(url, anInput, this.bearer, ProfileUpdateResponse.class)
+                .orElseThrow(() -> DealsignException.generate("Não foi possível atualizar o perfil."));
     }
 }

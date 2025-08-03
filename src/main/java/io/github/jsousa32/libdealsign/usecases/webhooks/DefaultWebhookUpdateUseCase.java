@@ -3,7 +3,7 @@ package io.github.jsousa32.libdealsign.usecases.webhooks;
 import io.github.jsousa32.libdealsign.usecases.UnitUseCase;
 import io.github.jsousa32.libdealsign.usecases.webhooks.models.update.WebhookUpdateRequest;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 
 final class DefaultWebhookUpdateUseCase extends UnitUseCase<WebhookUpdateRequest> {
@@ -29,10 +29,6 @@ final class DefaultWebhookUpdateUseCase extends UnitUseCase<WebhookUpdateRequest
 
     @Override
     public void execute(final WebhookUpdateRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
-
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
-
-        rest.exchange(this.url, HttpMethod.PATCH, httpEntity, Void.class);
+        RequestUtils.patch(this.bearer, this.url, anInput);
     }
 }

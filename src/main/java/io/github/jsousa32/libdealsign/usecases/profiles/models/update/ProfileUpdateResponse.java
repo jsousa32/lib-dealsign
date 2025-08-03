@@ -1,28 +1,31 @@
 package io.github.jsousa32.libdealsign.usecases.profiles.models.update;
 
-import io.github.jsousa32.libdealsign.usecases.profiles.models.common.Profile;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProfileUpdateResponse {
 
+    private String uuid;
+
     private String name;
 
-    private LocalDateTime birthday;
+    private String birthday;
 
     private String document;
 
-    private List<Profile> profiles;
+    private List<ProfileUpdate> profiles;
 
     public ProfileUpdateResponse() {
+    }
+
+    public String getUuid() {
+        return uuid;
     }
 
     public String getName() {
         return name;
     }
 
-    public LocalDateTime getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
@@ -30,7 +33,7 @@ public class ProfileUpdateResponse {
         return document;
     }
 
-    public List<Profile> getProfiles() {
+    public List<ProfileUpdate> getProfiles() {
         return profiles;
     }
 }

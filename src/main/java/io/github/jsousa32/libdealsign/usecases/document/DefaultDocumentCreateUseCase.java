@@ -5,7 +5,7 @@ import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.document.models.create.DocumentCreateRequest;
 import io.github.jsousa32.libdealsign.usecases.document.models.create.DocumentCreateResponse;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
@@ -34,7 +34,7 @@ final class DefaultDocumentCreateUseCase extends UseCase<DocumentCreateResponse,
 
     @Override
     public DocumentCreateResponse execute(final DocumentCreateRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
+        final var rest = RequestUtils.getInstance();
 
         final var httpEntity = HeadersUtils.generateForm(bearer, anInput.getForm());
 

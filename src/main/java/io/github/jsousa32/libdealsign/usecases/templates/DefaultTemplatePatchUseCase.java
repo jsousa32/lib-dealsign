@@ -4,12 +4,8 @@ import io.github.jsousa32.libdealsign.exceptions.DealsignException;
 import io.github.jsousa32.libdealsign.usecases.UseCase;
 import io.github.jsousa32.libdealsign.usecases.templates.models.patch.TemplatePatchRequest;
 import io.github.jsousa32.libdealsign.usecases.templates.models.patch.TemplatePatchResponse;
-import io.github.jsousa32.libdealsign.utils.HeadersUtils;
-import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import io.github.jsousa32.libdealsign.utils.RequestUtils;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Optional;
 
 final class DefaultTemplatePatchUseCase extends UseCase<TemplatePatchResponse, TemplatePatchRequest> {
 
@@ -34,12 +30,7 @@ final class DefaultTemplatePatchUseCase extends UseCase<TemplatePatchResponse, T
 
     @Override
     public TemplatePatchResponse execute(final TemplatePatchRequest anInput) {
-        final var rest = RestTemplateUtils.getInstance();
-
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
-
-        return Optional.of(rest.exchange(url, HttpMethod.POST, httpEntity, TemplatePatchResponse.class))
-                .map(ResponseEntity::getBody)
+        return RequestUtils.post(this.bearer, this.url, anInput, TemplatePatchResponse.class)
                 .orElseThrow(() -> DealsignException.generate("Não foi possível realizar o patch do template."));
     }
 }
