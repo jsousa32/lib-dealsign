@@ -6,12 +6,14 @@ import io.github.jsousa32.libdealsign.usecases.profiles.models.create.ProfileCre
 import io.github.jsousa32.libdealsign.usecases.profiles.models.create.ProfileCreateResponse;
 import io.github.jsousa32.libdealsign.utils.HeadersUtils;
 import io.github.jsousa32.libdealsign.utils.RestTemplateUtils;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
 import java.util.Optional;
 
-final class DefaultProfileCreateUseCase extends UseCase<ProfileCreateResponse, ProfileCreateRequest> {
+final class DefaultProfileCreateUseCase extends UseCase<List<ProfileCreateResponse>, ProfileCreateRequest> {
 
     private final String bearer;
 
@@ -33,14 +35,14 @@ final class DefaultProfileCreateUseCase extends UseCase<ProfileCreateResponse, P
     }
 
     @Override
-    public ProfileCreateResponse execute(final ProfileCreateRequest anInput) {
+    public List<ProfileCreateResponse> execute(final ProfileCreateRequest anInput) {
         final var rest = RestTemplateUtils.getInstance();
 
         final var url = this.url.concat(anInput.getSignerUuid());
 
-        final var httpEntity = HeadersUtils.generate(bearer, anInput);
+        final var httpEntity = HeadersUtils.generate(bearer, anInput.getProfiles());
 
-        return Optional.of(rest.exchange(url, HttpMethod.PATCH, httpEntity, ProfileCreateResponse.class))
+        return Optional.of(rest.exchange(url, HttpMethod.POST, httpEntity, new ParameterizedTypeReference<List<ProfileCreateResponse>>() {}))
                 .map(ResponseEntity::getBody)
                 .orElseThrow(() -> DealsignException.generate("Não foi possível cadastrar o perfil."));
     }

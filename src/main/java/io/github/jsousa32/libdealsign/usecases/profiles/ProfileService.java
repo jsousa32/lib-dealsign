@@ -1,9 +1,12 @@
 package io.github.jsousa32.libdealsign.usecases.profiles;
 
+import io.github.jsousa32.libdealsign.usecases.profiles.models.create.ProfileCreate;
 import io.github.jsousa32.libdealsign.usecases.profiles.models.create.ProfileCreateRequest;
 import io.github.jsousa32.libdealsign.usecases.profiles.models.create.ProfileCreateResponse;
 import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateRequest;
 import io.github.jsousa32.libdealsign.usecases.profiles.models.update.ProfileUpdateResponse;
+
+import java.util.List;
 
 public interface ProfileService {
 
@@ -16,7 +19,7 @@ public interface ProfileService {
 
     ProfileUpdateResponse update(final ProfileUpdateRequest anInput);
 
-    ProfileCreateResponse create(final ProfileCreateRequest anInput);
+    List<ProfileCreateResponse> create(final ProfileCreateRequest anInput);
 
     void delete(final String anId);
 }

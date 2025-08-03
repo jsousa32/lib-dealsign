@@ -1,65 +1,29 @@
 package io.github.jsousa32.libdealsign.usecases.profiles.models.create;
 
-import io.github.jsousa32.libdealsign.usecases.common_enums.Authentication;
-import io.github.jsousa32.libdealsign.usecases.common_enums.Receivings;
 import io.github.jsousa32.libdealsign.utils.ErrorUtils;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class ProfileCreateRequest {
 
     private final String signerUuid;
 
-    private final String email;
-
-    private String phoneNumber;
-
-    private final Set<Authentication> authentications;
-
-    private final Set<Receivings> receivings;
-
-    private boolean principal;
+    private final List<ProfileCreate> profiles;
 
     private ProfileCreateRequest(
-            final String aProfileUuid,
-            final String anEmail,
-            final Set<Authentication> anAuthentications,
-            final Set<Receivings> aReceivings
+            final String aSignerUuid,
+            final List<ProfileCreate> aProfiles
     ) {
-        this.signerUuid = aProfileUuid;
-        this.email = anEmail;
-        this.authentications = anAuthentications;
-        this.receivings = aReceivings;
-        this.principal = true;
+        this.signerUuid = aSignerUuid;
+        this.profiles = aProfiles;
         this.validate();
     }
 
     public static ProfileCreateRequest generate(
-            final String aProfileUuid,
-            final String anEmail,
-            final Set<Authentication> anAuthentications,
-            final Set<Receivings> aReceivings
+            final String aSignerUuid,
+            final List<ProfileCreate> aProfiles
     ) {
-        return new ProfileCreateRequest(aProfileUuid, anEmail, anAuthentications, aReceivings);
-    }
-
-    public static ProfileCreateRequest generate(
-            final String aProfileUuid,
-            final String anEmail
-    ) {
-        return new ProfileCreateRequest(aProfileUuid, anEmail, Set.of(Authentication.EMAIL), Set.of(Receivings.EMAIL));
-    }
-
-    public ProfileCreateRequest changePhoneNumber(final String aPhoneNumber) {
-        this.phoneNumber = aPhoneNumber;
-        return this;
-    }
-
-    public ProfileCreateRequest changePrincipal(final boolean aPrincipal) {
-        this.principal = aPrincipal;
-        return this;
+        return new ProfileCreateRequest(aSignerUuid, aProfiles);
     }
 
     private void validate() {
@@ -69,16 +33,8 @@ public class ProfileCreateRequest {
             errors.add("signerUuid");
         }
 
-        if (getEmail() == null || getEmail().isBlank()) {
-            errors.add("email");
-        }
-
-        if (getAuthentications().isEmpty()) {
-            errors.add("authentications");
-        }
-
-        if (getReceivings().isEmpty()) {
-            errors.add("receivings");
+        if (getProfiles().isEmpty()) {
+            errors.add("profiles");
         }
 
         ErrorUtils.checkIfHasAnyError(errors);
@@ -88,23 +44,7 @@ public class ProfileCreateRequest {
         return signerUuid;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public Set<Authentication> getAuthentications() {
-        return Optional.ofNullable(authentications).orElseGet(HashSet::new);
-    }
-
-    public Set<Receivings> getReceivings() {
-        return Optional.ofNullable(receivings).orElseGet(HashSet::new);
-    }
-
-    public boolean isPrincipal() {
-        return principal;
+    public List<ProfileCreate> getProfiles() {
+        return Optional.ofNullable(profiles).orElseGet(ArrayList::new);
     }
 }

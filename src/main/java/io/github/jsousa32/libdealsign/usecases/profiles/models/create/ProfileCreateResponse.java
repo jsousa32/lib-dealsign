@@ -1,36 +1,57 @@
 package io.github.jsousa32.libdealsign.usecases.profiles.models.create;
 
+import io.github.jsousa32.libdealsign.usecases.common_enums.Authentication;
+import io.github.jsousa32.libdealsign.usecases.common_enums.Receivings;
 import io.github.jsousa32.libdealsign.usecases.profiles.models.common.Profile;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public class ProfileCreateResponse {
 
-    private String name;
+    private String uuid;
 
-    private LocalDateTime birthday;
+    private String signerUuid;
 
-    private String document;
+    private String email;
 
-    private List<Profile> profiles;
+    private String phoneNumber;
+
+    private Set<Authentication> authentications;
+
+    private Set<Receivings> receivings;
+
+    private boolean principal;
 
     public ProfileCreateResponse() {
     }
 
-    public String getName() {
-        return name;
+    public String getUuid() {
+        return uuid;
     }
 
-    public LocalDateTime getBirthday() {
-        return birthday;
+    public String getSignerUuid() {
+        return signerUuid;
     }
 
-    public String getDocument() {
-        return document;
+    public String getEmail() {
+        return email;
     }
 
-    public List<Profile> getProfiles() {
-        return profiles;
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Set<Authentication> getAuthentications() {
+        return authentications;
+    }
+
+    public Set<Receivings> getReceivings() {
+        return receivings;
+    }
+
+    public boolean isPrincipal() {
+        return principal;
     }
 }
